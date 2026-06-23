@@ -1,0 +1,42 @@
+{
+  "project_name": "connectfun",
+  "project_slug": "connectfun",
+  "client": "ConnectFun",
+  "environment": "development",
+  "tracking": {
+    "gtm_id": "",
+    "enabled": false
+  },
+  "forms": {
+    "lead-form": {
+      "id": "lead-form",
+      "redirect_on_success": "",
+      "webhooks": [
+        "https://server3n8n.dmove.com.br/webhook/connect-fun"
+      ],
+      "fields_required": [
+        "Nome",
+        "WhatsApp",
+        "E-mail",
+        "Tipo de evento",
+        "Data do evento",
+        "Convidados"
+      ]
+    }
+  },
+  "whatsapp_popup": {
+    "phone": "",
+    "form_id": "whats-popup",
+    "show_after_ms": 3000
+  },
+  "deploy": {
+    "user": "root",
+    "server": "157.173.197.116",
+    "remote_path": "/var/www/eventos.connectfun.com.br"
+  },
+  "meta": {
+    "created_at": "2026-06-23",
+    "last_updated": "2026-06-23",
+    "owner": "Rodrigo"
+  }
+}

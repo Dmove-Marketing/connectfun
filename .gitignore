@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Arquivos fonte de mídia (processados já estão em src/assets/images/)
+HERO/
+Galeria/
+CLIENTES/
+KaBum_01.mp4

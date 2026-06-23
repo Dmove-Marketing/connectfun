@@ -1,0 +1,393 @@
+---
+// Gerado a partir de: index.html
+import Base from '../layouts/Base.astro';
+import config from '../../config.json';
+import Img from '../components/ui/Img.astro';
+import Video from '../components/ui/Video.astro';
+import LeadForm from '../components/forms/LeadForm.astro';
+import '../styles/index.css';
+
+const clientes = [
+  { src: 'cliente-01.jpg',  alt: 'Stamina VC' },
+  { src: 'cliente-02.png',  alt: 'KaBuM' },
+  { src: 'cliente-03.png',  alt: 'Digisystem' },
+  { src: 'cliente-04.png',  alt: 'Stone' },
+  { src: 'cliente-05.png',  alt: 'Caixa Econômica Federal' },
+  { src: 'cliente-06.png',  alt: 'Amazon' },
+  { src: 'cliente-07.png',  alt: 'Adidas' },
+  { src: 'cliente-08.png',  alt: 'Renner' },
+  { src: 'cliente-09.png',  alt: 'O Boticário' },
+  { src: 'cliente-10.webp', alt: 'Cliente' },
+  { src: 'cliente-11.png',  alt: 'Cliente' },
+  { src: 'cliente-12.jpg',  alt: 'Agência Blood' },
+  { src: 'cliente-13.jpg',  alt: 'Somos WG' },
+  { src: 'cliente-14.webp', alt: 'Agência Mattis' },
+  { src: 'cliente-15.png',  alt: 'Cliente' },
+  { src: 'cliente-16.jpg',  alt: 'Cliente' },
+  { src: 'cliente-17.webp', alt: 'Cliente' },
+  { src: 'cliente-18.png',  alt: 'Red Bull' },
+  { src: 'cliente-19.jpg',  alt: 'Quartzolit' },
+  { src: 'cliente-20.png',  alt: 'Whirlpool' },
+  { src: 'cliente-21.png',  alt: 'Candide' },
+  { src: 'cliente-22.png',  alt: 'Cruzeiro do Sul Educacional' },
+  { src: 'cliente-23.png',  alt: 'Zé Delivery' },
+  { src: 'cliente-24.png',  alt: 'Mackenzie' },
+  { src: 'cliente-25.png',  alt: 'Unifecaf' },
+  { src: 'cliente-26.png',  alt: 'Anhanguera' },
+];
+import galeria01 from '../assets/images/galeria-01.jpg';
+import galeria02 from '../assets/images/galeria-02.jpg';
+import galeria03 from '../assets/images/galeria-03.jpg';
+import galeria04 from '../assets/images/galeria-04.jpg';
+import galeria05 from '../assets/images/galeria-05.jpg';
+import galeria06 from '../assets/images/galeria-06.jpg';
+import galeria07 from '../assets/images/galeria-07.jpg';
+import galeria08 from '../assets/images/galeria-08.jpg';
+import galeria09 from '../assets/images/galeria-09.jpeg';
+import galeria10 from '../assets/images/galeria-10.jpg';
+import galeria11 from '../assets/images/galeria-11.jpg';
+import galeria12 from '../assets/images/galeria-12.jpg';
+import galeria13 from '../assets/images/galeria-13.jpg';
+import galeria14 from '../assets/images/galeria-14.jpg';
+import galeria15 from '../assets/images/galeria-15.jpg';
+import hero1 from '../assets/images/hero-1.jpeg';
+import hero2 from '../assets/images/hero-2.jpg';
+import hero3 from '../assets/images/hero-3.jpeg';
+---
+
+<Base
+  title="Connect Fun · Espaços para treinamentos e workshops em São Paulo"
+  description="Você diz o que seu treinamento precisa e a Connect Fun encontra o espaço ideal entre mais de 10 opções premium em São Paulo. A forma mais rápida e prática de planejar o workshop da sua empresa."
+  ogImage="/images/og-index.jpg"
+>
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#topo" class="logo"><span class="dot"></span>Connect Fun</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#origem">Quem somos</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#espacos">Espaços</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-ghost">Falar com especialista</a>
+      <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-bg">
+    <div class="hero-slides">
+      <div class="hero-slide" style={`background-image:url('${hero1.src}')`}></div>
+      <div class="hero-slide" style={`background-image:url('${hero2.src}')`}></div>
+      <div class="hero-slide" style={`background-image:url('${hero3.src}')`}></div>
+    </div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <canvas id="constellation"></canvas>
+  </div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">O hub de eventos mais completo de São Paulo</span>
+        <h1>Você diz o que seu evento corporativo precisa.<br>Nós encontramos o <span class="ital">espaço ideal.</span></h1>
+        <p class="lead">Encontre o lugar certo para o workshop da sua empresa com a Connect Fun.</p>
+        <div class="hero-actions">
+          <a href="#contato" class="btn btn-primary">Quero conhecer as possibilidades <span class="arr">→</span></a>
+          <a href="#contato" class="hero-note"><span class="arr">→</span> Resposta rápida da nossa equipe comercial.</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <h3>Quer planejar um treinamento?</h3>
+        <p>Conte o essencial. Nós cuidamos da curadoria.</p>
+        <LeadForm
+          formId="lead-form"
+          project={config.project_slug}
+          submitUrl={config.forms['lead-form'].webhooks[0]}
+          redirectUrl={config.forms['lead-form'].redirect_on_success}
+          submitText="Enviar"
+          honeypot
+          fields={[
+            { type: 'row', fields: [
+              { name: 'nome',     type: 'text', label: 'Nome',     placeholder: 'Seu nome',          required: true },
+              { name: 'telefone', type: 'tel',  label: 'Telefone', placeholder: '(11) 90000-0000',   required: true, mask: 'phone' },
+            ]},
+            { name: 'email', type: 'email', label: 'E-mail', placeholder: 'nome@empresa.com.br', required: true },
+            { name: 'tipo', type: 'select', label: 'Tipo de evento', required: true, options: [
+              { value: '', label: 'Selecione o formato', disabled: true, selected: true },
+              { value: 'Treinamento', label: 'Treinamento' },
+              { value: 'Workshop', label: 'Workshop' },
+              { value: 'Onboarding / Integração', label: 'Onboarding / Integração' },
+              { value: 'Imersão de liderança', label: 'Imersão de liderança' },
+              { value: 'Kickoff / Convenção', label: 'Kickoff / Convenção' },
+              { value: 'Outro formato', label: 'Outro formato' }
+            ] }
+          ]}
+        />
+      </div>
+    </div>
+
+    <div class="trust reveal">
+      <div class="item"><div class="n"><b>+10</b> espaços</div><div class="l">Curadoria de ambientes premium em São Paulo.</div></div>
+      <div class="item"><div class="n">até <b>3.000</b></div><div class="l">Participantes, conforme o espaço selecionado.</div></div>
+      <div class="item"><div class="n"><b>+15</b> anos</div><div class="l">De experiência no mercado de eventos.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sec light" id="origem">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <Video
+          src="/videos/sobre.mp4"
+          poster="/images/sobre-poster.jpg"
+          title="Connect Fun — Espaços para eventos corporativos em São Paulo"
+          description="Conheça a Connect Fun e como conectamos empresas aos melhores espaços de São Paulo há mais de 15 anos."
+          uploadDate="2024-12-12"
+          duration="PT1M10S"
+        />
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow dark">Por que existimos?</span>
+        <h2 class="display-l">Há mais de 15 anos transformando ideias em resultado.</h2>
+        <p>Desde 2009, conectamos empresas aos espaços mais importantes de São Paulo. Um projeto que nasceu da experiência de quem vive o mercado de eventos por dentro e conhece cada detalhe que separa um evento comum de um inesquecível.</p>
+        <p>Hoje somos a curadoria que existe para uma única missão: fazer a sua marca ser lembrada. Enquanto você foca na estratégia, nós assumimos tudo o que está entre a ideia e o aplauso final, do endereço à altura da sua marca ao último ponto da operação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT FUN 360 -->
+<section class="sec plum" id="connect360">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Connect Fun 360°</span>
+      <h2 class="display-l">O evento inteiro sob um só comando.</h2>
+      <p class="lead">A escolha do local é só o ponto de partida. A partir dele, você passa a contar com estrutura, inteligência e suporte reunidos em um único ponto de contato.</p>
+    </div>
+    <div class="diffs">
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <h3>Seleção de Fornecedores Premium</h3>
+        <p>Parceiros escolhidos por seu histórico comprovado de qualidade e bom atendimento.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h3>Produção Integral</h3>
+        <p>Soluções moldadas ao que você precisa, com flexibilidade e agilidade.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+        <h3>Time de Visitas Técnicas</h3>
+        <p>Especialistas dedicados a conferir se cada detalhe corresponde ao que você espera.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4m8-4v4M12 13l3 2"/></svg></div>
+        <h3>Agenda Centralizada + Concierge</h3>
+        <p>Datas atualizadas na hora e acompanhamento sob medida para o seu evento.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18v10H3zM3 11h18M7 15h3"/></svg></div>
+        <h3>Programa de Cashback</h3>
+        <p>Clube Connect, com vantagens exclusivas para quem é cliente recorrente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="sec" id="processo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2 class="display-l">Você não precisa procurar sozinho.</h2>
+      <p class="lead">Um processo consultivo do primeiro contato à contratação.</p>
+    </div>
+    <div class="steps">
+      <div class="process-connector"></div>
+      <div class="step reveal">
+        <div class="num">01 · Briefing</div>
+        <h3>Entendemos a sua demanda</h3>
+        <p>Formato, número de pessoas, duração, recursos e objetivo de aprendizado. Ouvimos antes de sugerir qualquer coisa.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02 · Curadoria</div>
+        <h3>Selecionamos os ambientes</h3>
+        <p>Cruzamos seus requisitos com o nosso portfólio e filtramos só o que favorece foco e produtividade.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03 · Proposta</div>
+        <h3>Apresentamos as possibilidades</h3>
+        <p>Você recebe alternativas comparáveis, com clareza de estrutura, capacidade e condições.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">04 · Operação</div>
+        <h3>Cuidamos de cada detalhe</h3>
+        <p>Da contratação ao dia do evento, um time especializado acompanha tudo ao seu lado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA DE ESPAÇOS PARCEIROS -->
+<!--
+  COMO TROCAR PELAS SUAS FOTOS:
+  Em cada <figure class="gal-item">, adicione o atributo:
+      style="background-image:url('caminho/da/sua-foto.jpg')"
+  A foto preenche o bloco automaticamente (cover). Para mais ou menos fotos,
+  duplique ou remova as linhas <figure class="gal-item"></figure>.
+-->
+<section class="sec" id="espacos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Espaços parceiros</span>
+      <h2 class="display-l">Ambientes que elevam o nível da sua capacitação.</h2>
+      <p class="lead">Você escolhe pelo que faz sentido para o seu time, o restante fica por nossa conta.</p>
+    </div>
+    <div class="gallery reveal">
+      <figure class="gal-item" style={`background-image:url('${galeria01.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria02.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria03.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria04.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria05.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria06.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria07.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria08.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria09.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria10.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria11.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria12.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria13.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria14.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria15.src}')`}></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PARCEIROS / CLIENTES -->
+<!--
+  CARROSSEL DE LOGOS: troque cada .logo-slot por sua logo, ex.:
+      <div class="logo-slot"><Img src="/images/placeholder.jpg" alt="Cliente" priority /></div>
+  Para o loop contínuo, mantenha o conjunto de logos DUPLICADO (a 2ª metade é a cópia).
+  Adicione/remova slots em pares (um na 1ª metade e o mesmo na 2ª).
+-->
+<section class="sec light" id="parceiros">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow dark">Nossos clientes</span>
+      <h2 class="display-l">Parceiros que confiam no nosso trabalho.</h2>
+    </div>
+  </div>
+  <div class="partners reveal">
+    <div class="partners-track">
+      {[...clientes, ...clientes].map((c) => (
+        <div class="logo-slot">
+          <Img src={c.src} alt={c.alt} width={160} style="max-height:60px;width:auto;object-fit:contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec light" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow dark">Dúvidas frequentes</span>
+      <h2 class="display-l">O que costumam nos perguntar.</h2>
+    </div>
+    <div class="faq">
+      <div class="qa reveal" aria-expanded="false">
+        <button>A Connect Fun é uma casa de eventos? <span class="ic">+</span></button>
+        <div class="ans"><p>Não. Somos um hub: conectamos a sua empresa ao lugar certo entre mais de 10 opções premium da capital. Em vez de negociar com várias casas, você faz a curadoria, a comparação e a contratação por um único atendimento.</p></div>
+      </div>
+      <div class="qa reveal" aria-expanded="false">
+        <button>Vocês atendem equipes de quais tamanhos? <span class="ic">+</span></button>
+        <div class="ans"><p>De grupos reservados a grandes convenções de capacitação. Conforme o local selecionado, é possível receber até 3.000 participantes, com estrutura para pequeno, médio e grande porte.</p></div>
+      </div>
+      <div class="qa reveal" aria-expanded="false">
+        <button>Que tipos de treinamento vocês atendem? <span class="ic">+</span></button>
+        <div class="ans"><p>Treinamentos técnicos, workshops, onboarding, imersões de liderança, kickoffs, reciclagens e certificações, entre outros formatos. Se o objetivo é a sua equipe aprender, achamos o ambiente sob medida.</p></div>
+      </div>
+      <div class="qa reveal" aria-expanded="false">
+        <button>Os locais têm estrutura para um dia inteiro? <span class="ic">+</span></button>
+        <div class="ans"><p>Sim. Priorizamos ambientes com bom áudio e vídeo, conforto, iluminação adequada, salas de apoio e opções de alimentação, para manter a turma engajada do começo ao fim.</p></div>
+      </div>
+      <div class="qa reveal" aria-expanded="false">
+        <button>Em quanto tempo recebo um retorno? <span class="ic">+</span></button>
+        <div class="ans"><p>Agilidade é um dos nossos pilares. Depois de entender o que você precisa, a equipe comercial volta rápido com as alternativas e os próximos passos.</p></div>
+      </div>
+      <div class="qa reveal" aria-expanded="false">
+        <button>Vocês acompanham além da contratação? <span class="ic">+</span></button>
+        <div class="ans"><p>Sim. Apoiamos o cliente em todas as etapas, da seleção à operação no dia. Infraestrutura e experiência operacional fazem parte do que entregamos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL / FORM -->
+<section class="sec cta-final" id="contato">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="cta-left reveal">
+        <span class="eyebrow">Vamos começar</span>
+        <h2 class="display-l">Quer planejar um treinamento?</h2>
+        <p class="lead">Conte o essencial. Nós cuidamos da curadoria.</p>
+      </div>
+
+      <div class="form-card reveal">
+        <LeadForm
+          formId="lead-form"
+          project={config.project_slug}
+          submitUrl={config.forms['lead-form'].webhooks[0]}
+          redirectUrl={config.forms['lead-form'].redirect_on_success}
+          submitText="Enviar solicitação →"
+          honeypot
+          fields={[
+            { name: 'nome', type: 'text', placeholder: 'Seu nome', required: true },
+            { name: 'telefone', type: 'tel', placeholder: '(11) 90000-0000', required: true, mask: 'phone' },
+            { name: 'email', type: 'email', placeholder: 'nome@empresa.com.br', required: true },
+            { name: 'tipo', type: 'select', placeholder: '', required: true, options: [
+              { value: '', label: 'Selecione' },
+              { value: 'Treinamento', label: 'Treinamento' },
+              { value: 'Workshop', label: 'Workshop' },
+              { value: 'Onboarding / Integração', label: 'Onboarding / Integração' },
+              { value: 'Imersão de liderança', label: 'Imersão de liderança' },
+              { value: 'Kickoff / Convenção', label: 'Kickoff / Convenção' },
+              { value: 'Outro', label: 'Outro' }
+            ] }
+          ]}
+        />
+        <div class="form-success" id="formSuccess">
+          <div class="ok"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></div>
+          <h3>Recebemos a sua solicitação.</h3>
+          <p>Vamos analisar o briefing e voltar rápido com as melhores opções para o seu treinamento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-bottom" style="border-top:0;padding-top:0">
+      <span>Copyright © 2026 Connect Fun. Todos os direitos reservados.</span>
+      <a href="#topo" class="logo"><span class="dot"></span>Connect Fun</a>
+      <span class="dev-credit">Desenvolvido por <a href="https://dmove.com.br" target="_blank" rel="noopener"><Img src="logo-dmove.webp" alt="Dmove" width={96} style="display:inline-block;vertical-align:middle;opacity:.6;transition:opacity .2s" /></a></span>
+    </div>
+  </div>
+</footer>
+
+
+</Base>
+<script>
+  import '../scripts/index.js';
+</script>

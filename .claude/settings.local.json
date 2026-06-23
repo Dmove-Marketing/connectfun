@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Command *)",
+      "Bash(Remove-Item \"src\\\\pages\\\\eventos-corporativos.astro\", \"src\\\\styles\\\\eventos-corporativos.css\", \"src\\\\scripts\\\\eventos-corporativos.js\")"
+    ]
+  }
+}
