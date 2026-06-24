@@ -31,27 +31,6 @@
     });
   });
 
-  // Lead form
-  const leadForm = document.getElementById('leadForm');
-  const formSuccess = document.getElementById('formSuccess');
-  leadForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if(!leadForm.checkValidity()){ leadForm.reportValidity(); return; }
-    leadForm.style.display = 'none';
-    formSuccess.classList.add('on');
-    formSuccess.scrollIntoView({behavior:'smooth', block:'center'});
-  });
-
-  // Mini form -> scroll to main form and prefill
-  const miniCta = document.getElementById('miniCta');
-  miniCta.addEventListener('click', () => {
-    const map = [['m-name','f-name'],['m-phone','f-phone'],['m-mail','f-email'],['m-type','f-type']];
-    map.forEach(([from,to]) => {
-      const src = document.getElementById(from);
-      const dst = document.getElementById(to);
-      if(src && dst && src.value){ dst.value = src.value; }
-    });
-  });
 
   // ---- Constellation (signature) ----
   const canvas = document.getElementById('constellation');
