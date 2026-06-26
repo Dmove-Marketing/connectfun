@@ -5,6 +5,7 @@ import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import Video from '../components/ui/Video.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
+import WhatsAppPopup from '../components/WhatsAppPopup.astro';
 import '../styles/index.css';
 
 const clientes = [
@@ -50,9 +51,9 @@ import galeria12 from '../assets/images/galeria-12.jpg';
 import galeria13 from '../assets/images/galeria-13.jpg';
 import galeria14 from '../assets/images/galeria-14.jpg';
 import galeria15 from '../assets/images/galeria-15.jpg';
-import hero1 from '../assets/images/hero-1.jpeg';
+const hero1src = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452_(1)_(1).webp';
 import midGal01 from '../assets/images/mid-gal-01.jpg';
-import midGal02 from '../assets/images/mid-gal-02.jpg';
+const midGal02src = 'https://media.dmove.com.br/clients/connectfun/photos/WhatsApp_Image_2025-12-04_at_11.57.29.webp';
 import midGal03 from '../assets/images/mid-gal-03.jpg';
 import midGal04 from '../assets/images/mid-gal-04.jpg';
 import midGal05 from '../assets/images/mid-gal-05.jpg';
@@ -86,7 +87,7 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
 <section class="hero" id="topo">
   <div class="hero-bg">
     <div class="hero-slides">
-      <div class="hero-slide" style={`background-image:url('${hero1.src}')`}></div>
+      <div class="hero-slide" style={`background-image:url('${hero1src}')`}></div>
     </div>
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
@@ -94,54 +95,13 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
   </div>
   <div class="wrap">
     <div class="hero-content reveal">
-      <span class="eyebrow">O hub de eventos mais completo de São Paulo</span>
-      <h1>Você diz o que seu evento corporativo precisa.<br>Nós encontramos o <span class="ital">espaço ideal.</span></h1>
-      <p class="lead">Encontre o lugar certo para o workshop da sua empresa com a Connect Fun.</p>
+      <span class="eyebrow" style="letter-spacing:.04em">O hub de eventos mais completo de São Paulo</span>
+      <h1>Você diz o que seu evento corporativo precisa.</h1>
     </div>
 
-    <form class="hero-search reveal"
-      id="heroLeadForm"
-      data-form-id="lead-form"
-      data-project={config.project_slug}
-      data-submit-url={config.forms['lead-form'].webhooks[0]}
-      data-redirect={config.forms['lead-form'].redirect_on_success}
-      data-success-id="heroSuccess"
-    >
-      <input name="website" type="text" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
-      <div class="hs-field">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <input type="text" name="nome" placeholder="Seu nome" required autocomplete="name" />
-      </div>
-      <div class="hs-sep"></div>
-      <div class="hs-field">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.43 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
-        <input type="tel" name="telefone" placeholder="(11) 90000-0000" required autocomplete="tel" />
-      </div>
-      <div class="hs-sep"></div>
-      <div class="hs-field">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <input type="email" name="email" placeholder="nome@empresa.com.br" required autocomplete="email" />
-      </div>
-      <div class="hs-sep"></div>
-      <div class="hs-field hs-field--select">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4m8-4v4"/></svg>
-        <select name="tipo" required>
-          <option value="" disabled selected>Tipo de Evento</option>
-          <option>Treinamento</option>
-          <option>Workshop</option>
-          <option>Onboarding / Integração</option>
-          <option>Imersão de liderança</option>
-          <option>Kickoff / Convenção</option>
-          <option>Outro formato</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary hs-btn">
-        Buscar <span class="arr">→</span>
-      </button>
-    </form>
-    <div class="hero-success" id="heroSuccess">
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-      <span>Recebemos! Nossa equipe volta rápido.</span>
+    <div class="hero-below reveal">
+      <h2 class="hero-below-title">Nós encontramos o <span class="ital">espaço ideal.</span></h2>
+      <p class="hero-below-lead">Encontre o lugar certo para o workshop da sua empresa com a Connect Fun.</p>
     </div>
 
     <div class="trust reveal">
@@ -223,7 +183,7 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
   <div class="wrap">
     <div class="mid-gallery reveal">
       <figure class="mid-gal-item" style={`background-image:url('${midGal01.src}')`}></figure>
-      <figure class="mid-gal-item" style={`background-image:url('${midGal02.src}')`}></figure>
+      <figure class="mid-gal-item" style={`background-image:url('${midGal02src}')`}></figure>
       <figure class="mid-gal-item" style={`background-image:url('${midGal03.src}')`}></figure>
       <figure class="mid-gal-item" style={`background-image:url('${midGal04.src}')`}></figure>
       <figure class="mid-gal-item" style={`background-image:url('${midGal05.src}')`}></figure>
@@ -283,19 +243,19 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
     </div>
     <div class="gallery reveal">
       <figure class="gal-item" style={`background-image:url('${galeria01.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria02.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria03.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria04.src}')`}></figure>
       <figure class="gal-item" style={`background-image:url('${galeria05.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria06.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria07.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria08.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria09.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria10.src}')`}></figure>
       <figure class="gal-item" style={`background-image:url('${galeria11.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria02.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria04.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria06.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria14.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria08.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria03.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria10.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria09.src}')`}></figure>
       <figure class="gal-item" style={`background-image:url('${galeria12.src}')`}></figure>
       <figure class="gal-item" style={`background-image:url('${galeria13.src}')`}></figure>
-      <figure class="gal-item" style={`background-image:url('${galeria14.src}')`}></figure>
+      <figure class="gal-item" style={`background-image:url('${galeria07.src}')`}></figure>
       <figure class="gal-item" style={`background-image:url('${galeria15.src}')`}></figure>
     </div>
   </div>
@@ -394,7 +354,9 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
               { value: 'Imersão de liderança', label: 'Imersão de liderança' },
               { value: 'Kickoff / Convenção', label: 'Kickoff / Convenção' },
               { value: 'Outro', label: 'Outro' }
-            ] }
+            ] },
+            { name: 'data', type: 'date', placeholder: 'Data do evento', required: true },
+            { name: 'convidados', type: 'number', placeholder: 'Nº de convidados', required: true, min: '1' },
           ]}
         />
         <div class="form-success" id="formSuccess">
@@ -407,13 +369,20 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
   </div>
 </section>
 
+<!-- WHATSAPP FLOATING BUTTON + POPUP -->
+<WhatsAppPopup
+  project={config.project_slug}
+  submitUrl={config.forms['lead-form'].webhooks[0]}
+  redirectUrl={config.forms['lead-form'].redirect_on_success}
+/>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-bottom" style="border-top:0;padding-top:0">
       <span>Copyright © 2026 Connect Fun. Todos os direitos reservados.</span>
       <a href="#topo" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" height="28" /></a>
-      <span class="dev-credit">Desenvolvido por <a href="https://dmove.com.br" target="_blank" rel="noopener"><Img src="logo-dmove.webp" alt="Dmove" width={96} style="display:inline-block;vertical-align:middle;opacity:.6;transition:opacity .2s" /></a></span>
+      <span class="dev-credit">Desenvolvido por <a href="https://dmove.com.br" target="_blank" rel="noopener"><Img src="logo-dmove.webp" alt="Dmove" width={96} style="display:inline-block;vertical-align:middle;opacity:1;transition:opacity .2s" /></a></span>
     </div>
   </div>
 </footer>
@@ -422,4 +391,11 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
 </Base>
 <script>
   import '../scripts/index.js';
+  import flatpickr from 'flatpickr';
+  import { Portuguese } from 'flatpickr/dist/l10n/pt.js';
+  flatpickr.localize(Portuguese);
+  document.querySelectorAll<HTMLInputElement>('[data-datepicker]').forEach((el) => {
+    if ((el as any)._flatpickr) return;
+    flatpickr(el, { dateFormat: 'd/m/Y', minDate: 'today', disableMobile: false, allowInput: false });
+  });
 </script>
