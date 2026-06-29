@@ -96,7 +96,10 @@
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
   .logo{display:flex;align-items:center}
-  .logo img{display:block;height:32px;width:auto}
+  .logo img{display:block;height:32px;width:auto;opacity:0;transform:translateY(-8px);transition:opacity .35s ease,transform .35s ease}
+  .logo img.logo-visible{opacity:1;transform:translateY(0)}
+  .hero-inline-logo{height:36px!important;width:auto!important;vertical-align:middle;display:inline-block!important;margin:0 10px 0 18px;transition:opacity .35s ease}
+  .hero-inline-logo.logo-pulled{opacity:0}
   .nav-links{display:flex;gap:34px;align-items:center}
   .nav-links a{font-size:.92rem;color:var(--slate-light);transition:color .2s}
   .nav-links a:hover{color:var(--paper)}
@@ -116,13 +119,14 @@
   .glow-2{width:480px;height:480px;background:radial-gradient(circle,rgba(61,11,38,.9),transparent 70%);bottom:-220px;left:-160px}
   #constellation{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.9}
   /* Hero — conteúdo centralizado */
-  .hero-content{position:relative;z-index:2;text-align:center;max-width:1060px;margin:0 auto 14px}
-  .hero-content h1{margin:22px 0 0}
+  .hero-content{position:relative;z-index:2;text-align:center;max-width:1060px;margin:-28px auto 14px}
+  .hero-content .eyebrow{font-size:1rem;letter-spacing:.06em;margin-bottom:4px}
+  .hero-content h1{margin:22px 0 0;line-height:1.25}
   .hero-content .lead{margin:0 auto;max-width:none;white-space:nowrap}
 
 
   /* Bloco abaixo do formulário */
-  .hero-below{position:relative;z-index:2;text-align:center;max-width:1060px;margin:10px auto 0}
+  .hero-below{position:relative;z-index:2;text-align:center;max-width:1060px;margin:32px auto 0}
   .hero-below-title{color:var(--paper);margin:0 0 12px}
   .hero-below-lead{font-size:clamp(1rem,1.4vw,1.15rem);color:#fff;margin:0 auto;max-width:52ch}
 
@@ -181,6 +185,12 @@
   #origem .eyebrow,#origem .eyebrow.dark{color:rgba(255,255,255,.8)}
   #origem h2{color:#fff}
   #origem .about-text p{color:rgba(255,255,255,.88)}
+
+  /* Seção Espaços parceiros — fundo rosa */
+  #espacos{background:var(--magenta)}
+  #espacos .eyebrow,#espacos .eyebrow.dark{color:rgba(255,255,255,.8)}
+  #espacos h2{color:#fff}
+  #espacos .lead{color:rgba(255,255,255,.88)}
 
   /* INSIGHT (origin story) */
   .insight{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -422,7 +432,7 @@
     .gallery{grid-template-columns:1fr;grid-auto-rows:200px}
     .form-row{grid-template-columns:1fr}
     .trust{gap:28px 40px}
-    .nav-cta .btn-ghost{display:none}
+    .nav-cta .btn{display:none}
     #contato .cta-left{text-align:center}
     #contato .cta-left .eyebrow{justify-content:center}
     .foot-bottom{grid-template-columns:1fr;gap:16px;text-align:center}
