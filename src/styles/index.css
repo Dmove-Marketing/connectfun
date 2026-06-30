@@ -108,7 +108,7 @@
   .burger span{width:24px;height:2px;background:var(--paper);display:block;transition:.3s}
 
   /* HERO */
-  .hero{position:relative;padding:160px 0 90px;overflow:hidden}
+  .hero{position:relative;padding:160px 0 90px;overflow:hidden;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
   .hero-bg{position:absolute;inset:0;z-index:0}
   .hero-slides{position:absolute;inset:0;z-index:0}
   .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:1}
