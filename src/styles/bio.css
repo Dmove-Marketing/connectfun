@@ -1,0 +1,272 @@
+/* bio.css - pagina link-in-bio Connect Fun */
+
+:root {
+  --ink:          #0F0E17;
+  --ink-soft:     #16151F;
+  --magenta:      #E93A7D;
+  --magenta-glow: #FF6BA3;
+  --paper:        #FAF8F7;
+  --slate-light:  #fff;
+  --line:         rgba(255,255,255,.10);
+  --display:      "Krona One", sans-serif;
+  --body:         "Poppins", sans-serif;
+  --mono:         "Space Grotesk", sans-serif;
+  --wa-green:     #25D366;
+  --wa-dark:      #075E54;
+  --wa-teal:      #128C7E;
+  --wa-chat-bg:   #eae6df;
+  --wa-bubble-in: #ffffff;
+  --wa-bubble-txt:#111b21;
+  --wa-time-clr:  #8696a0;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--body, 'Poppins', sans-serif);
+  background: var(--ink, #0F0E17);
+  color: var(--paper, #FAF8F7);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ── Page wrapper — imagem de fundo unificada ── */
+.bio {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  position: relative;
+}
+.bio::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,14,23,.55) 0%, rgba(15,14,23,.88) 40%, rgba(15,14,23,.97) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Card principal ── */
+.bio-card {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Logo ── */
+.bio-logo { width: 220px; height: auto; object-fit: contain; }
+
+/* ── Textos ── */
+.bio-headline {
+  font-family: var(--display, 'Krona One', sans-serif);
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  text-align: center;
+  color: var(--paper, #FAF8F7);
+  margin: 20px 0 10px;
+}
+.bio-sub {
+  font-size: .97rem;
+  color: rgba(255,255,255,.72);
+  text-align: center;
+  max-width: 36ch;
+  margin: 0 auto 32px;
+}
+
+/* ── Botões de link ── */
+.bio-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.bio-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(10px);
+  color: var(--paper, #FAF8F7);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  text-align: left;
+}
+.bio-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.2);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+.bio-btn:active { transform: translateY(0); }
+
+.bio-btn-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.08);
+  transition: background .2s;
+}
+.bio-btn-icon svg { width: 20px; height: 20px; }
+
+.bio-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.bio-btn-text strong {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--paper, #FAF8F7);
+  line-height: 1.2;
+}
+.bio-btn-text small {
+  font-size: .78rem;
+  color: rgba(255,255,255,.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bio-btn--address .bio-btn-icon { background: rgba(233,58,125,.18); color: var(--magenta, #E93A7D); }
+
+/* ── Ícones redondos de redes sociais ── */
+.bio-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.bio-social {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: var(--paper, #FAF8F7);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  flex-shrink: 0;
+}
+.bio-social svg { width: 22px; height: 22px; }
+.bio-social:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.bio-social:active { transform: scale(.94); }
+
+.bio-social--instagram { background: rgba(225,48,108,.15); border-color: rgba(225,48,108,.3); color: #E1306C; }
+.bio-social--instagram:hover { background: #E1306C; border-color: #E1306C; color: #fff; box-shadow: 0 8px 24px rgba(225,48,108,.45); }
+
+.bio-social--facebook  { background: rgba(24,119,242,.15); border-color: rgba(24,119,242,.3); color: #1877F2; }
+.bio-social--facebook:hover  { background: #1877F2; border-color: #1877F2; color: #fff; box-shadow: 0 8px 24px rgba(24,119,242,.45); }
+
+.bio-social--tiktok    { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); color: var(--paper, #FAF8F7); }
+.bio-social--tiktok:hover    { background: #111; border-color: #69C9D0; color: #fff; box-shadow: 0 8px 24px rgba(105,201,208,.3); }
+
+.bio-social--linkedin  { background: rgba(10,102,194,.15); border-color: rgba(10,102,194,.3); color: #0A66C2; }
+.bio-social--linkedin:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; box-shadow: 0 8px 24px rgba(10,102,194,.45); }
+
+.bio-social--site      { background: rgba(233,58,125,.18); border-color: rgba(233,58,125,.35); color: var(--magenta, #E93A7D); }
+.bio-social--site:hover      { background: var(--magenta, #E93A7D); border-color: var(--magenta, #E93A7D); color: #fff; box-shadow: 0 8px 24px rgba(233,58,125,.5); }
+
+/* Validação de formulário */
+.input-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,.18) !important; }
+
+/* ── Botões (sobrescreve global.css para manter identidade do projeto) ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: .98rem;
+  padding: 15px 26px;
+  border-radius: 100px;
+  border: 0;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  line-height: 1;
+}
+.btn-primary {
+  background: var(--magenta);
+  color: #fff;
+  box-shadow: 0 10px 30px -10px rgba(233,58,125,.7);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -10px rgba(233,58,125,.85);
+  background: #f5478a;
+}
+
+/* ── Card do formulário ── */
+.bio-form-wrap {
+  width: 100%;
+  margin-bottom: 36px;
+}
+.bio-form-card {
+  background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 24px;
+  padding: 28px;
+}
+
+/* ── Footer ── */
+.bio-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+}
+.bio-footer span {
+  font-size: .75rem;
+  color: rgba(255,255,255,.45);
+}
+.bio-dev { font-size: .72rem !important; }
+.bio-dev a { color: var(--magenta, #E93A7D); text-decoration: none; }
+.bio-dev a:hover { text-decoration: underline; }
+
+/* ── Responsivo ── */
+@media (max-width: 540px) {
+  .bio-card { padding: 48px 16px 50px; }
+  .bio-logo { width: 170px; }
+  .bio-headline { font-size: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

@@ -10,6 +10,10 @@ function buildFonte(tracking: Record<string, string>): string {
 export function initForms() {
   const forms = document.querySelectorAll<HTMLFormElement>('form[data-form-id]');
   forms.forEach((form) => {
+    // Evita registrar múltiplos listeners se initForms() for chamado mais de uma vez
+    if (form.dataset.formsInit) return;
+    form.dataset.formsInit = '1';
+
     let started = false;
     const formId    = form.dataset.formId!;
     const project   = form.dataset.project || window.location.hostname;
@@ -36,6 +40,28 @@ export function initForms() {
 
       const hp = form.querySelector<HTMLInputElement>('[name="website"]');
       if (hp && hp.value) return;
+
+      // Validação de campos obrigatórios
+      const requiredFields = Array.from(
+        form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[required]')
+      );
+      let hasError = false;
+      requiredFields.forEach((el) => {
+        el.classList.remove('input-invalid');
+        if (!el.value.trim()) {
+          el.classList.add('input-invalid');
+          hasError = true;
+        }
+      });
+      if (hasError) {
+        const first = form.querySelector<HTMLElement>('.input-invalid');
+        first?.focus();
+        return;
+      }
+      requiredFields.forEach((el) => {
+        el.addEventListener('input', () => el.classList.remove('input-invalid'), { once: true });
+        el.addEventListener('change', () => el.classList.remove('input-invalid'), { once: true });
+      });
 
       const submitBtn  = form.querySelector<HTMLButtonElement>('.form-submit, [type="submit"]');
       const btnText    = submitBtn?.querySelector<HTMLElement>('.btn-text');
