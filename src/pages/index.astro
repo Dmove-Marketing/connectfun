@@ -419,6 +419,6 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
   flatpickr.localize(Portuguese);
   document.querySelectorAll<HTMLInputElement>('[data-datepicker]').forEach((el) => {
     if ((el as any)._flatpickr) return;
-    flatpickr(el, { dateFormat: 'd/m/Y', minDate: 'today', disableMobile: false, allowInput: false });
+    flatpickr(el, { dateFormat: 'd/m/Y', minDate: 'today', disableMobile: true, allowInput: false });
   });
 </script>

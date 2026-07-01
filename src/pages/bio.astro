@@ -28,68 +28,52 @@ const heroPhoto = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452
     <h1 class="bio-headline">O jeito mais fácil de encontrar o lugar ideal para o seu evento.</h1>
     <p class="bio-sub">O hub que conecta empresas aos melhores espaços de São Paulo.</p>
 
-    <!-- Links / Botões -->
-    <nav class="bio-links" aria-label="Links Connect Fun">
+    <!-- Ícones: endereço + redes sociais na mesma linha -->
+    <nav class="bio-socials" aria-label="Links Connect Fun">
 
-      <!-- Endereço -->
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=Av.+Alfredo+Eg%C3%ADdio+de+Souza+Aranha%2C+384%2C+Ch%C3%A1cara+Santo+Ant%C3%B4nio%2C+S%C3%A3o+Paulo"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bio-btn bio-btn--address"
-      >
-        <span class="bio-btn-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/>
-            <circle cx="12" cy="10" r="2.5"/>
-          </svg>
-        </span>
-        <span class="bio-btn-text">
-          <strong>Nosso Endereço</strong>
-          <small>Av. Alfredo Egídio de Souza Aranha, 384 — São Paulo, SP</small>
-        </span>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Alfredo+Eg%C3%ADdio+de+Souza+Aranha%2C+384%2C+Ch%C3%A1cara+Santo+Ant%C3%B4nio%2C+S%C3%A3o+Paulo" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--white" aria-label="Endereço">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/>
+          <circle cx="12" cy="10" r="2.5"/>
+        </svg>
       </a>
 
-      <!-- Redes sociais — ícones redondos -->
-      <div class="bio-socials">
+      <a href="https://www.instagram.com/connectfunsp?igsh=MWtzNWh3MWdhbHFvcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--pink" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
 
-        <a href="https://www.instagram.com/connectfunsp?igsh=MWtzNWh3MWdhbHFvcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--instagram" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
+      <a href="https://www.facebook.com/connectfunsp/" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--blue" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
 
-        <a href="https://www.facebook.com/connectfunsp/" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--facebook" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-          </svg>
-        </a>
+      <a href="https://www.tiktok.com/@connect.fun?_t=ZM-8zMyFlYUxT4&_r=1" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--white" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.91a8.16 8.16 0 0 0 4.77 1.52V6.99a4.85 4.85 0 0 1-1-.3z"/>
+        </svg>
+      </a>
 
-        <a href="https://www.tiktok.com/@connect.fun?_t=ZM-8zMyFlYUxT4&_r=1" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--tiktok" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.91a8.16 8.16 0 0 0 4.77 1.52V6.99a4.85 4.85 0 0 1-1-.3z"/>
-          </svg>
-        </a>
+      <a href="https://connectfun.com.br/" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--pink" aria-label="Site">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </a>
 
-        <a href="https://www.linkedin.com/company/connect-funsp/" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--linkedin" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
-        </a>
+      <a href="https://www.linkedin.com/company/connect-funsp/" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--blue" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
 
-        <a href="https://connectfun.com.br/" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--site" aria-label="Site">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-        </a>
-
-      </div>
     </nav>
 
     <!-- FORMULÁRIO -->

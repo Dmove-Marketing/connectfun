@@ -1,5 +1,21 @@
 /* bio.css - pagina link-in-bio Connect Fun */
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Krona One';
+  src: url('/fonts/KronaOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink:          #0F0E17;
   --ink-soft:     #16151F;
@@ -76,9 +92,9 @@ img { max-width: 100%; display: block; }
 /* ── Textos ── */
 .bio-headline {
   font-family: var(--display, 'Krona One', sans-serif);
-  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.04;
   letter-spacing: -.02em;
   text-align: center;
   color: var(--paper, #FAF8F7);
@@ -92,78 +108,14 @@ img { max-width: 100%; display: block; }
   margin: 0 auto 32px;
 }
 
-/* ── Botões de link ── */
-.bio-links {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 36px;
-}
-
-.bio-btn {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  padding: 14px 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.1);
-  background: rgba(255,255,255,.05);
-  backdrop-filter: blur(10px);
-  color: var(--paper, #FAF8F7);
-  cursor: pointer;
-  transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
-  text-align: left;
-}
-.bio-btn:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,.09);
-  border-color: rgba(255,255,255,.2);
-  box-shadow: 0 8px 24px rgba(0,0,0,.3);
-}
-.bio-btn:active { transform: translateY(0); }
-
-.bio-btn-icon {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  background: rgba(255,255,255,.08);
-  transition: background .2s;
-}
-.bio-btn-icon svg { width: 20px; height: 20px; }
-
-.bio-btn-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-.bio-btn-text strong {
-  font-size: .95rem;
-  font-weight: 600;
-  color: var(--paper, #FAF8F7);
-  line-height: 1.2;
-}
-.bio-btn-text small {
-  font-size: .78rem;
-  color: rgba(255,255,255,.6);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.bio-btn--address .bio-btn-icon { background: rgba(233,58,125,.18); color: var(--magenta, #E93A7D); }
-
-/* ── Ícones redondos de redes sociais ── */
+/* ── Ícones redondos — todos os links ── */
 .bio-socials {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 14px;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-bottom: 36px;
 }
 
 .bio-social {
@@ -185,20 +137,14 @@ img { max-width: 100%; display: block; }
 }
 .bio-social:active { transform: scale(.94); }
 
-.bio-social--instagram { background: rgba(225,48,108,.15); border-color: rgba(225,48,108,.3); color: #E1306C; }
-.bio-social--instagram:hover { background: #E1306C; border-color: #E1306C; color: #fff; box-shadow: 0 8px 24px rgba(225,48,108,.45); }
+.bio-social--pink  { background: rgba(233,58,125,.15); border-color: rgba(233,58,125,.35); color: var(--magenta, #E93A7D); }
+.bio-social--pink:hover  { background: var(--magenta, #E93A7D); border-color: var(--magenta, #E93A7D); color: #fff; box-shadow: 0 8px 24px rgba(233,58,125,.45); }
 
-.bio-social--facebook  { background: rgba(24,119,242,.15); border-color: rgba(24,119,242,.3); color: #1877F2; }
-.bio-social--facebook:hover  { background: #1877F2; border-color: #1877F2; color: #fff; box-shadow: 0 8px 24px rgba(24,119,242,.45); }
+.bio-social--blue  { background: rgba(24,119,242,.15); border-color: rgba(24,119,242,.3); color: #1877F2; }
+.bio-social--blue:hover  { background: #1877F2; border-color: #1877F2; color: #fff; box-shadow: 0 8px 24px rgba(24,119,242,.45); }
 
-.bio-social--tiktok    { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); color: var(--paper, #FAF8F7); }
-.bio-social--tiktok:hover    { background: #111; border-color: #69C9D0; color: #fff; box-shadow: 0 8px 24px rgba(105,201,208,.3); }
-
-.bio-social--linkedin  { background: rgba(10,102,194,.15); border-color: rgba(10,102,194,.3); color: #0A66C2; }
-.bio-social--linkedin:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; box-shadow: 0 8px 24px rgba(10,102,194,.45); }
-
-.bio-social--site      { background: rgba(233,58,125,.18); border-color: rgba(233,58,125,.35); color: var(--magenta, #E93A7D); }
-.bio-social--site:hover      { background: var(--magenta, #E93A7D); border-color: var(--magenta, #E93A7D); color: #fff; box-shadow: 0 8px 24px rgba(233,58,125,.5); }
+.bio-social--white { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); color: var(--paper, #FAF8F7); }
+.bio-social--white:hover { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.35); color: #fff; box-shadow: 0 8px 24px rgba(255,255,255,.12); }
 
 /* Validação de formulário */
 .input-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,.18) !important; }
@@ -261,10 +207,17 @@ img { max-width: 100%; display: block; }
 .bio-dev a:hover { text-decoration: underline; }
 
 /* ── Responsivo ── */
+@media (max-width: 960px) {
+  .bio-headline { font-size: 1.5rem; }
+}
+
 @media (max-width: 540px) {
   .bio-card { padding: 48px 16px 50px; }
   .bio-logo { width: 170px; }
-  .bio-headline { font-size: 1.1rem; }
+  .bio-headline { font-size: 1.25rem; }
+  .bio-socials { gap: 10px; }
+  .bio-social { width: 46px; height: 46px; }
+  .bio-social svg { width: 19px; height: 19px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
