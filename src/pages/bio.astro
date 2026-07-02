@@ -87,10 +87,10 @@ const heroPhoto = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452
           submitText="Enviar solicitação →"
           honeypot
           fields={[
-            { name: 'nome',      type: 'text',   placeholder: 'Seu nome',           required: true },
-            { name: 'telefone',  type: 'tel',    placeholder: '(11) 90000-0000',    required: true, mask: 'phone' },
-            { name: 'email',     type: 'email',  placeholder: 'nome@empresa.com.br',required: true },
-            { name: 'tipo', type: 'select', placeholder: '', required: true, options: [
+            { name: 'Nome',           id: 'nome',       type: 'text',   placeholder: 'Seu nome',           required: true },
+            { name: 'WhatsApp',       id: 'whatsapp',   type: 'tel',    placeholder: '(11) 90000-0000',    required: true, mask: 'phone' },
+            { name: 'E-mail',         id: 'email',      type: 'email',  placeholder: 'nome@empresa.com.br',required: true },
+            { name: 'Tipo de evento', id: 'tipo',       type: 'select', placeholder: '', required: true, options: [
               { value: '',                                     label: 'Selecione',                           disabled: true, selected: true },
               { value: 'Treinamento',                          label: 'Treinamento' },
               { value: 'Workshop',                             label: 'Workshop' },
@@ -99,8 +99,8 @@ const heroPhoto = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452
               { value: 'Kickoff / Convenção',                  label: 'Kickoff / Convenção' },
               { value: 'Outro',                                label: 'Outro' },
             ]},
-            { name: 'data',      type: 'date',   placeholder: 'Data do evento',     required: true },
-            { name: 'convidados',type: 'number', placeholder: 'Nº de convidados',   required: true, min: '1' },
+            { name: 'Data do evento', id: 'data',       type: 'date',   placeholder: 'Data do evento',     required: true },
+            { name: 'Convidados',     id: 'convidados', type: 'number', placeholder: 'Nº de convidados',   required: true, min: '1' },
           ]}
         />
       </div>
