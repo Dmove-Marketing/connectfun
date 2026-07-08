@@ -1,10 +1,15 @@
-function buildFonte(tracking: Record<string, string>): string {
-  if (tracking.utm_source) {
-    let f = tracking.utm_source;
-    if (tracking.utm_medium) f += ` / ${tracking.utm_medium}`;
-    return f;
-  }
-  return tracking.landing_page || window.location.pathname;
+function buildFonte(form: HTMLFormElement, tracking: Record<string, string>): string {
+  const label = form.dataset.fonte || `Landing page${window.location.pathname}`;
+
+  const utmKeys = [
+    'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+    'gclid', 'wbraid', 'gbraid', 'fbclid', 'fbc', 'fbp', 'external_id', 'event_id',
+  ];
+  const params = new URLSearchParams();
+  utmKeys.forEach((k) => { if (tracking[k]) params.set(k, tracking[k]); });
+
+  const qs = params.toString();
+  return qs ? `${label}?${qs}` : label;
 }
 
 export function initForms() {
@@ -93,7 +98,7 @@ export function initForms() {
 
       const payload: Record<string, string> = {
         ...data,
-        'Fonte': buildFonte(tracking),
+        'Fonte': buildFonte(form, tracking),
         'Data': dateFmt,
         'Horário': timeFmt,
         'URL da página': window.location.href,

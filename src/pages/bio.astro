@@ -31,7 +31,7 @@ const heroPhoto = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452
     <!-- Ícones: endereço + redes sociais na mesma linha -->
     <nav class="bio-socials" aria-label="Links Connect Fun">
 
-      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Alfredo+Eg%C3%ADdio+de+Souza+Aranha%2C+384%2C+Ch%C3%A1cara+Santo+Ant%C3%B4nio%2C+S%C3%A3o+Paulo" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--white" aria-label="Endereço">
+      <a href="https://maps.app.goo.gl/6hsvDHPCpznAnDiK8" target="_blank" rel="noopener noreferrer" class="bio-social bio-social--white" aria-label="Endereço">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/>
           <circle cx="12" cy="10" r="2.5"/>
@@ -82,6 +82,7 @@ const heroPhoto = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452
         <LeadForm
           formId="bio-lead"
           project={config.project_slug}
+          fonte="Landing page/bio"
           submitUrl={config.forms['lead-form'].webhooks[0]}
           redirectUrl={config.forms['lead-form'].redirect_on_success}
           submitText="Enviar solicitação →"

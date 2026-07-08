@@ -2,8 +2,8 @@
 interface Props {
   /** URL pública do .mp4 (VPS ou CDN) */
   src: string;
-  /** Imagem de poster — use o componente Img ou uma URL */
-  poster: string;
+  /** Imagem de poster — use o componente Img ou uma URL. Omitir exibe o primeiro frame do vídeo. */
+  poster?: string;
   /** Título do vídeo — obrigatório para o VideoObject (SEO) */
   title: string;
   /** Descrição curta para o schema */
@@ -45,8 +45,8 @@ const schema = {
 <div class:list={['video-wrap', className]} id={videoId}>
   <video
     class="video-wrap__player"
-    poster={poster}
-    preload="none"
+    poster={poster || undefined}
+    preload={poster ? 'none' : 'metadata'}
     playsinline
     controls={controls}
     data-src={src}

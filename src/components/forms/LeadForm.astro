@@ -40,6 +40,7 @@ type AnyField = Field | FieldRow;
 interface Props {
   formId: string;
   project: string;
+  fonte?: string;
   apiUrl?: string;
   submitUrl?: string;
   redirectUrl?: string;
@@ -78,6 +79,7 @@ const EVENT_TYPE_OPTIONS: FieldOption[] = [
 const {
   formId,
   project,
+  fonte,
   apiUrl = '',
   submitUrl,
   redirectUrl,
@@ -141,6 +143,7 @@ function renderField(f: Field, cxInputClass: string, cxSelectClass: string, cxAr
   class:list={[!prefix && 'lead-form', className]}
   data-form-id={formId}
   data-project={project}
+  data-fonte={fonte}
   data-api-url={apiUrl}
   data-submit-url={submitUrl}
   data-redirect={redirectUrl}
