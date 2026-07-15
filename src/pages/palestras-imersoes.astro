@@ -43,7 +43,7 @@ const midGaleria = [
   'https://media.dmove.com.br/clients/connectfun/photos/_MG_8313_(1)_(1).webp',
   'https://media.dmove.com.br/clients/connectfun/photos/CÃ³pia_de_DSC05590.webp',
   'https://media.dmove.com.br/clients/connectfun/photos/20230606_135455_(1).webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/Horizontal_-_(22).webp',
+  'https://media.dmove.com.br/clients/connectfun/photos/Copia_de_DSC05587.webp',
 ];
 
 import logoConnectfun from '../assets/images/logo-connectfun.png';
@@ -101,6 +101,17 @@ const espacos = [
       </div>
     </div>
 
+    <div class="trust reveal">
+      <div class="item"><div class="n"><b>+10</b> espaços</div><div class="l">Curadoria de ambientes premium em São Paulo.</div></div>
+      <div class="item"><div class="n">até <b>3.000</b></div><div class="l">Participantes, conforme o espaço selecionado.</div></div>
+      <div class="item"><div class="n"><b>+15</b> anos</div><div class="l">De experiência no mercado de eventos.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS (só mobile) -->
+<section class="trust-strip-mobile">
+  <div class="wrap">
     <div class="trust reveal">
       <div class="item"><div class="n"><b>+10</b> espaços</div><div class="l">Curadoria de ambientes premium em São Paulo.</div></div>
       <div class="item"><div class="n">até <b>3.000</b></div><div class="l">Participantes, conforme o espaço selecionado.</div></div>
@@ -176,9 +187,18 @@ const espacos = [
 
 <!-- GALERIA INTERMEDIÁRIA -->
 <section class="sec-gallery-mid">
-  <div class="wrap">
+  <!-- Desktop: grid -->
+  <div class="wrap mid-gallery-desktop">
     <div class="mid-gallery reveal">
       {midGaleria.map((src) => (
+        <figure class="mid-gal-item" style={`background-image:url('${src}')`}></figure>
+      ))}
+    </div>
+  </div>
+  <!-- Mobile: carrossel automático -->
+  <div class="mid-gal-carousel" aria-hidden="true">
+    <div class="mid-gal-track">
+      {[...midGaleria, ...midGaleria].map((src) => (
         <figure class="mid-gal-item" style={`background-image:url('${src}')`}></figure>
       ))}
     </div>
