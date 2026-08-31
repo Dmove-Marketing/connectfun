@@ -58,6 +58,19 @@ export function initForms() {
           hasError = true;
         }
       });
+
+      // Telefone: exige 10 ou 11 dígitos (DDD + número). Pega o caso do lead que
+      // digita o número sem o DDD — ex. "99999-9999" —, que a máscara formata como
+      // "(99) 9999-9999" e parece válido, mas é um número incompleto/errado.
+      form.querySelectorAll<HTMLInputElement>('[data-mask="phone"]').forEach((el) => {
+        el.classList.remove('input-invalid');
+        const digits = el.value.replace(/\D/g, '');
+        if (digits && (digits.length < 10 || digits.length > 11)) {
+          el.classList.add('input-invalid');
+          hasError = true;
+        }
+      });
+
       if (hasError) {
         const first = form.querySelector<HTMLElement>('.input-invalid');
         first?.focus();
