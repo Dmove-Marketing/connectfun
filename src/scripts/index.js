@@ -61,7 +61,10 @@
       });
     }
   }
+  let skip = false;
   function draw(){
+    skip = !skip;
+    if(skip){ raf = requestAnimationFrame(draw); return; }
     ctx.clearRect(0,0,W,H);
     // links between nearby nodes
     for(let i=0;i<nodes.length;i++){
@@ -89,11 +92,13 @@
       ctx.fillStyle = 'rgba(255,255,255,.55)';
       ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,Math.PI*2); ctx.fill();
     }
-    // hub node
+    // hub node: brilho desenhado com gradiente radial (shadowBlur a cada frame é muito caro em celular)
+    const gr = 22*devicePixelRatio;
+    const g = ctx.createRadialGradient(hub.x,hub.y,0,hub.x,hub.y,gr);
+    g.addColorStop(0,'rgba(233,58,125,.55)'); g.addColorStop(1,'rgba(233,58,125,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(hub.x,hub.y,gr,0,Math.PI*2); ctx.fill();
     ctx.fillStyle = '#E93A7D';
-    ctx.shadowColor = '#E93A7D'; ctx.shadowBlur = 22*devicePixelRatio;
     ctx.beginPath(); ctx.arc(hub.x,hub.y,5*devicePixelRatio,0,Math.PI*2); ctx.fill();
-    ctx.shadowBlur = 0;
     raf = requestAnimationFrame(draw);
   }
   // Só anima enquanto a hero está visível, e só depois do load (não disputa CPU com o carregamento)

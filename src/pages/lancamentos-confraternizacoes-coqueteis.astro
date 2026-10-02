@@ -72,7 +72,7 @@ const imgCoqueteis = 'lp/coqueteis.webp';
 // Fundos sob overlay escuro (78–82%): resolução e qualidade menores não aparecem
 const ctaBg = await getImage({ src: ctaBgSrc, width: 1600, quality: 50, format: 'webp' });
 const faqBg = await getImage({ src: faqBgSrc, width: 1600, quality: 45, format: 'webp' });
-const poster = await getImage({ src: posterSrc, width: 720, quality: 70, format: 'webp' });
+const poster = await getImage({ src: posterSrc, width: 720, quality: 60, format: 'webp' });
 const ogImage = await getImage({ src: heroSrc, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 75 });
 
 const faq = [
@@ -175,7 +175,7 @@ const jsonLd = {
   <div class="hero-bg">
     <div class="hero-slides">
       <div class="hero-slide">
-        <Img src={hero} alt="" priority widths={[640, 960, 1280, 1920]} sizes="100vw" quality={60} class="hero-img" />
+        <Img src={hero} alt="" priority widths={[640, 960, 1280, 1920]} sizes="100vw" quality={45} class="hero-img" />
       </div>
     </div>
     <div class="glow glow-1"></div>
@@ -238,8 +238,8 @@ const jsonLd = {
         />
       </div>
       <div class="about-imgs reveal">
-        <Img src="lp/sobre-01.webp" alt="Espaço parceiro da Connect Fun montado para evento" widths={[400, 640, 900]} sizes="(max-width: 960px) 92vw, 380px" quality={70} style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
-        <Img src="lp/sobre-02.webp" alt="Ambiente de evento corporativo em São Paulo" widths={[400, 640, 900]} sizes="(max-width: 960px) 92vw, 380px" quality={70} style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
+        <Img src="lp/sobre-01.webp" alt="Espaço parceiro da Connect Fun montado para evento" widths={[320, 480, 720]} sizes="(max-width: 960px) 92vw, 210px" quality={60} style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
+        <Img src="lp/sobre-02.webp" alt="Ambiente de evento corporativo em São Paulo" widths={[320, 480, 720]} sizes="(max-width: 960px) 92vw, 210px" quality={60} style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
       </div>
     </div>
   </div>
