@@ -3,8 +3,8 @@
 // Injetado no <head> pelo layout Base.astro
 //
 // O GTM (e tudo que ele dispara: GA4, Google Ads, Meta Pixel) é carregado depois que a página
-// aparece: no primeiro gesto do usuário (toque, rolagem, clique, tecla) ou ~1,5s após o load,
-// o que vier primeiro. Assim os ~800 KB de JS de terceiros não atrasam o LCP. O dataLayer já
+// aparece: no primeiro gesto do usuário (toque, rolagem, clique, tecla) ou 6s após o load,
+// o que vier primeiro. Só deixa de registrar quem sai em menos de 6s sem tocar na tela. Assim os ~800 KB de JS de terceiros não atrasam o LCP. O dataLayer já
 // existe desde o início, então eventos enviados antes (form_start etc.) ficam na fila e não se perdem.
 interface Props {
   gtmId: string;
@@ -26,7 +26,7 @@ const { gtmId } = Astro.props;
       d.head.appendChild(j);
     }
     evs.forEach(function(e){ w.addEventListener(e,load,{passive:true,once:true}); });
-    function later(){ setTimeout(function(){ ('requestIdleCallback' in w) ? w.requestIdleCallback(load,{timeout:1500}) : load(); },1500); }
+    function later(){ setTimeout(load,6000); }
     if(d.readyState==='complete') later(); else w.addEventListener('load',later,{once:true});
   })(window,document,'dataLayer',gtmId);
 </script>
