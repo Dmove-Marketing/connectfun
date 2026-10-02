@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import logoConnectfun from '../assets/images/logo-connectfun.png';
+import { empresa, enderecoCompleto } from '../data/empresa';
+import '../styles/index.css';
+
+const atualizadoEm = '02 de outubro de 2026';
+---
+
+<Base
+  title="Política de Privacidade · Connect Fun"
+  description="Como a Connect Fun coleta, usa, armazena e protege os dados pessoais enviados pelos formulários e páginas deste site, em conformidade com a LGPD."
+  googleFonts={false}
+>
+
+<header class="nav scrolled" id="topo">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" width="160" height="32" class="logo-visible" /></a>
+  </div>
+</header>
+
+<main class="sec policy">
+  <div class="wrap">
+    <span class="eyebrow">LGPD · Lei nº 13.709/2018</span>
+    <h1>Política de Privacidade</h1>
+    <p class="updated">Última atualização: {atualizadoEm}</p>
+
+    <h2>1. Quem somos</h2>
+    <p>Este site é operado pela <strong>{empresa.razaoSocial}</strong>, inscrita no CNPJ sob o nº {empresa.cnpj}, com sede em {enderecoCompleto} ("Connect Fun", "nós"). A Connect Fun é a controladora dos dados pessoais tratados por meio deste site.</p>
+
+    <h2>2. Quais dados coletamos</h2>
+    <p><strong>Dados que você nos informa</strong> ao preencher um formulário ou o atendimento por WhatsApp do site: nome, telefone/WhatsApp, e-mail e informações sobre o evento (tipo de evento, data prevista e número de convidados).</p>
+    <p><strong>Dados coletados automaticamente</strong> durante a navegação: página de origem, página de entrada, parâmetros de campanha (UTMs), identificadores de clique de anúncios (como gclid e fbclid), data e hora do envio, além de informações técnicas do navegador e do dispositivo coletadas por cookies e tecnologias semelhantes.</p>
+
+    <h2>3. Para que usamos os dados</h2>
+    <ul>
+      <li>Responder à sua solicitação e entrar em contato para apresentar opções de espaços e orçamentos;</li>
+      <li>Fazer a curadoria e a gestão comercial do seu atendimento;</li>
+      <li>Medir o desempenho do site e das campanhas de marketing, entendendo de qual canal veio cada contato;</li>
+      <li>Exibir anúncios mais relevantes nas plataformas de mídia;</li>
+      <li>Cumprir obrigações legais e regulatórias.</li>
+    </ul>
+
+    <h2>4. Bases legais</h2>
+    <p>Tratamos seus dados com base no <strong>consentimento</strong> dado ao enviar o formulário, na execução de <strong>procedimentos preliminares relacionados a um contrato</strong> que você solicitou (orçamento e proposta) e no <strong>legítimo interesse</strong> da Connect Fun para mensurar e aprimorar suas campanhas, sempre respeitando os seus direitos (art. 7º, incisos I, V e IX, da LGPD).</p>
+
+    <h2>5. Cookies e ferramentas de terceiros</h2>
+    <p>Usamos o Google Tag Manager para gerenciar ferramentas de medição e publicidade como Google Analytics, Google Ads e Meta Pixel (Facebook/Instagram). Essas ferramentas podem usar cookies para registrar visitas, conversões e interações com anúncios. Você pode bloquear ou apagar cookies nas configurações do seu navegador, e também ajustar suas preferências de anúncios diretamente no Google e na Meta.</p>
+
+    <h2>6. Com quem compartilhamos</h2>
+    <p>Não vendemos seus dados. Eles podem ser compartilhados apenas com:</p>
+    <ul>
+      <li>Fornecedores de tecnologia que nos ajudam a operar o site, receber os formulários e gerenciar o relacionamento com clientes (hospedagem, automação e CRM);</li>
+      <li>Agência de marketing contratada para gerir o site e as campanhas;</li>
+      <li>Plataformas de publicidade e análise (Google e Meta), para mensuração de campanhas;</li>
+      <li>Espaços parceiros, quando necessário para verificar disponibilidade e montar a sua proposta;</li>
+      <li>Autoridades públicas, quando houver obrigação legal.</li>
+    </ul>
+    <p>Alguns desses fornecedores podem armazenar dados fora do Brasil, sempre com as garantias exigidas pela LGPD.</p>
+
+    <h2>7. Por quanto tempo guardamos</h2>
+    <p>Mantemos os dados pelo tempo necessário para cumprir as finalidades acima, enquanto houver relacionamento comercial ou pelo prazo exigido por lei. Depois disso, os dados são excluídos ou anonimizados.</p>
+
+    <h2>8. Seus direitos</h2>
+    <p>Você pode, a qualquer momento, solicitar: confirmação da existência de tratamento; acesso aos dados; correção de dados incompletos ou desatualizados; anonimização, bloqueio ou eliminação de dados desnecessários; portabilidade; informação sobre compartilhamentos; e revogação do consentimento (art. 18 da LGPD).</p>
+
+    <h2>9. Segurança</h2>
+    <p>Adotamos medidas técnicas e administrativas para proteger seus dados contra acessos não autorizados, perda ou alteração, incluindo conexão criptografada (HTTPS) em todo o site.</p>
+
+    <h2>10. Contato</h2>
+    <p>Para exercer seus direitos ou tirar dúvidas sobre esta política, fale conosco pelo e-mail <strong>{empresa.email}</strong>.</p>
+
+    <h2>11. Alterações</h2>
+    <p>Esta política pode ser atualizada periodicamente. A versão vigente estará sempre disponível nesta página, com a data da última atualização.</p>
+  </div>
+</main>
+
+<SiteFooter />
+
+</Base>
+
+<style>
+  .policy { padding-top: 140px; }
+  .policy .wrap { max-width: 760px; }
+  .policy h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 14px 0 8px; }
+  .policy .updated { color: var(--slate-light); opacity: .7; font-size: .85rem; margin-bottom: 40px; }
+  .policy h2 { font-size: 1.1rem; margin: 36px 0 12px; line-height: 1.3; }
+  .policy p, .policy li { color: var(--slate-light); line-height: 1.75; font-size: .95rem; }
+  .policy p + p { margin-top: 12px; }
+  .policy ul { padding-left: 20px; display: grid; gap: 6px; margin-top: 8px; }
+  .policy strong { color: var(--paper); font-weight: 600; }
+</style>

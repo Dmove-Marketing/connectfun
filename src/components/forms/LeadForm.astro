@@ -168,7 +168,7 @@ function renderField(f: Field, cxInputClass: string, cxSelectClass: string, cxAr
               <div class={groupCls(f.full)}>
                 {f.label && <label class={cxLabel} for={f.id ?? f.name}>{f.label}</label>}
                 {f.type === 'select' ? (
-                  <select class={cxSelect} name={f.name} id={f.id ?? f.name} required={f.required}>
+                  <select class={cxSelect} name={f.name} id={f.id ?? f.name} required={f.required} aria-label={f.label ? undefined : f.name}>
                     {f.options?.map((opt) => (
                       <option value={opt.value} disabled={opt.disabled} selected={opt.selected}>{opt.label}</option>
                     ))}
@@ -212,7 +212,7 @@ function renderField(f: Field, cxInputClass: string, cxSelectClass: string, cxAr
         <div class={groupCls(f.full)}>
           {f.label && <label class={cxLabel} for={f.id ?? f.name}>{f.label}</label>}
           {f.type === 'select' ? (
-            <select class={cxSelect} name={f.name} id={f.id ?? f.name} required={f.required}>
+            <select class={cxSelect} name={f.name} id={f.id ?? f.name} required={f.required} aria-label={f.label ? undefined : f.name}>
               {f.options?.map((opt) => (
                 <option value={opt.value} disabled={opt.disabled} selected={opt.selected}>{opt.label}</option>
               ))}
@@ -255,7 +255,7 @@ function renderField(f: Field, cxInputClass: string, cxSelectClass: string, cxAr
     </div>
 
     <div class={cxMsg} id={theMsgId}></div>
-    <p class={cxFooter}>Ao enviar, você concorda com nossa política de privacidade.</p>
+    <p class={cxFooter}>Ao enviar, você concorda com nossa <a href="/politica-de-privacidade/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">política de privacidade</a>.</p>
   </div>
 
   <div class={cxSuccess} id={theSuccessId}>

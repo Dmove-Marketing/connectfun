@@ -1,6 +1,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
+  // Domínio de produção — usado para canonical, og:url e og:image absolutos
+  site: 'https://eventos.connectfun.com.br',
+
   // Output estático (padrão) — gera HTML puro
   output: 'static',
 
@@ -9,7 +12,8 @@ export default defineConfig({
 
   // Build otimizado
   build: {
-    inlineStylesheets: 'auto',
+    // 'always': CSS inline no HTML, elimina requisições bloqueantes (LPs são visita de página única)
+    inlineStylesheets: 'always',
   },
 
   // Dev server

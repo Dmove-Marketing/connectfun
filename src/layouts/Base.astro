@@ -16,6 +16,8 @@ interface Props {
   jsonLd?: Record<string, any>;
   /** Sobrescreve o form_name enviado ao n8n pelo popup de WhatsApp desta página */
   whatsappFormId?: string;
+  /** Carrega a Inter do Google Fonts. Desligue em páginas que usam só fontes self-hosted (evita CSS bloqueante). */
+  googleFonts?: boolean;
 }
 
 const {
@@ -27,7 +29,12 @@ const {
   theme = 'dark',
   jsonLd,
   whatsappFormId,
+  googleFonts = true,
 } = Astro.props;
+
+// URLs absolutas: canonical cai na própria URL quando não informado (Astro.site vem do astro.config)
+const canonicalUrl = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined);
+const ogImageUrl = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
 
 import config from '../../config.json';
 const gtmId          = config.tracking?.gtm_id || '';
@@ -44,7 +51,7 @@ const defaultJsonLd = {
   '@type': 'WebPage',
   name: title,
   description: description,
-  url: canonical || Astro.url.href,
+  url: canonicalUrl || Astro.url.href,
 };
 ---
 
@@ -58,13 +65,14 @@ const defaultJsonLd = {
     <!-- SEO -->
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {canonical && <link rel="canonical" href={canonical} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageUrl} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
 
@@ -72,12 +80,16 @@ const defaultJsonLd = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Fonts — Inter (ajustar por projeto) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    {googleFonts && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </>
+    )}
 
     <!-- GTM Head -->
     {trackingEnabled && gtmId && <GTMHead gtmId={gtmId} />}

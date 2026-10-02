@@ -17,17 +17,18 @@
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // FAQ accordion
+  // FAQ accordion (estado no <button aria-expanded>, visual via .qa.open)
   document.querySelectorAll('.qa').forEach(qa => {
     const btn = qa.querySelector('button');
     const ans = qa.querySelector('.ans');
     btn.addEventListener('click', () => {
-      const open = qa.getAttribute('aria-expanded') === 'true';
+      const open = qa.classList.contains('open');
       document.querySelectorAll('.qa').forEach(o => {
-        o.setAttribute('aria-expanded','false');
+        o.classList.remove('open');
+        o.querySelector('button').setAttribute('aria-expanded','false');
         o.querySelector('.ans').style.maxHeight = null;
       });
-      if(!open){ qa.setAttribute('aria-expanded','true'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+      if(!open){ qa.classList.add('open'); btn.setAttribute('aria-expanded','true'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
     });
   });
 
@@ -95,8 +96,17 @@
     ctx.shadowBlur = 0;
     raf = requestAnimationFrame(draw);
   }
+  // Só anima enquanto a hero está visível, e só depois do load (não disputa CPU com o carregamento)
   if(canvas){
-    resize();
-    window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); if(!reduce) draw(); });
-    if(reduce){ draw(); cancelAnimationFrame(raf); } else { draw(); }
+    let visible = true, started = false;
+    const start = () => { if(started) return; started = true; resize(); if(reduce){ draw(); cancelAnimationFrame(raf); } else { draw(); } };
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if(!started || reduce) return;
+      cancelAnimationFrame(raf);
+      if(visible) draw();
+    }).observe(canvas);
+    window.addEventListener('resize', () => { if(!started) return; cancelAnimationFrame(raf); resize(); if(!reduce && visible) draw(); });
+    if(document.readyState === 'complete') setTimeout(start, 300);
+    else window.addEventListener('load', () => setTimeout(start, 300), {once:true});
   }

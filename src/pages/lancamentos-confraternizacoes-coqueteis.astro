@@ -1,11 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { empresa } from '../data/empresa';
 import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import Video from '../components/ui/Video.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
 import WhatsAppPopup from '../components/WhatsAppPopup.astro';
 import '../styles/lancamentos-confraternizacoes-coqueteis.css';
+import { getImage } from 'astro:assets';
+import logoConnectfun from '../assets/images/logo-connectfun.png';
+import heroSrc from '../assets/images/lp/hero.webp';
+import ctaBgSrc from '../assets/images/lp/cta.webp';
+import faqBgSrc from '../assets/images/lp/faq-bg.jpg';
+import posterSrc from '../assets/images/lp/poster-video.jpg';
 
 const clientes = [
   { src: 'cliente-01.jpg',  alt: 'Stamina VC' },
@@ -36,42 +44,119 @@ const clientes = [
   { src: 'cliente-26.png',  alt: 'Anhanguera' },
 ];
 
-const heroSrc = 'https://media.dmove.com.br/clients/connectfun/photos/ClubeOne-103.webp';
+// Imagens locais em src/assets/images/lp/ — o Astro gera WebP redimensionado + srcset no build.
+// Ao duplicar a página, troque os arquivos aqui (mesma pasta ou uma subpasta nova).
+const hero = 'lp/hero.webp';
 
 const midGaleria = [
-  'https://media.dmove.com.br/clients/connectfun/photos/_MG_8439.JPG.webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/Horizontal_-_(7).webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/_MG_4959.webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/CÃ³pia_de_DSC04512.webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/CÃ³pia_de_IMG_4393(1).webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/CÃ³pia_de_DSC05587.webp',
+  { src: 'lp/mid-01.webp', alt: 'Evento corporativo em espaço parceiro da Connect Fun' },
+  { src: 'lp/mid-02.webp', alt: 'Salão montado para evento corporativo em São Paulo' },
+  { src: 'lp/mid-03.webp', alt: 'Convidados em evento corporativo' },
+  { src: 'lp/mid-04.webp', alt: 'Ambientação de evento em espaço parceiro' },
+  { src: 'lp/mid-05.webp', alt: 'Detalhe de produção de evento corporativo' },
+  { src: 'lp/mid-06.webp', alt: 'Público em evento realizado com a Connect Fun' },
 ];
-
-import logoConnectfun from '../assets/images/logo-connectfun.png';
 
 const espacos = [
-  'https://media.dmove.com.br/clients/connectfun/photos/WhatsApp_Image_2023-05-23_at_12.23.26.webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/ClubeOne-135.webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/ClubeOne-109.webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/_MG_5271_(1).webp',
-  'https://media.dmove.com.br/clients/connectfun/photos/_MG_8445_(1).webp',
+  { src: 'lp/espaco-01.webp', alt: 'Espaço parceiro para eventos em São Paulo' },
+  { src: 'lp/espaco-02.webp', alt: 'Espaço para coquetéis e confraternizações' },
+  { src: 'lp/espaco-03.webp', alt: 'Espaço para lançamentos de produto' },
+  { src: 'lp/espaco-04.webp', alt: 'Salão para eventos corporativos' },
+  { src: 'lp/espaco-05.webp', alt: 'Ambiente para eventos de empresa' },
 ];
 
-const imgLancamento = 'https://media.dmove.com.br/clients/connectfun/photos/WhatsApp_Image_2025-12-04_at_11.57.30_(1)_(1).webp';
-const imgConfraternizacao = 'https://media.dmove.com.br/clients/connectfun/photos/coris_covencao_2025_436_1842363_222317.webp';
-const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8395.webp';
+const imgLancamento = 'lp/lancamento.webp';
+const imgConfraternizacao = 'lp/confraternizacao.webp';
+const imgCoqueteis = 'lp/coqueteis.webp';
+
+// Fundos sob overlay escuro (78–82%): resolução e qualidade menores não aparecem
+const ctaBg = await getImage({ src: ctaBgSrc, width: 1600, quality: 50, format: 'webp' });
+const faqBg = await getImage({ src: faqBgSrc, width: 1600, quality: 45, format: 'webp' });
+const poster = await getImage({ src: posterSrc, width: 720, quality: 70, format: 'webp' });
+const ogImage = await getImage({ src: heroSrc, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 75 });
+
+const faq = [
+  { q: 'A Connect Fun é uma casa de eventos?', a: 'Não. Somos um hub: conectamos a sua empresa ao lugar certo entre mais de 10 opções premium da capital. Em vez de negociar com várias casas, você faz a curadoria, a comparação e a contratação por um único atendimento.' },
+  { q: 'Vocês atendem eventos de quais tamanhos?', a: 'Nosso portfólio reúne opções para diferentes públicos, com espaços que podem receber até 3.000 participantes, conforme o local escolhido.' },
+  { q: 'Como funciona a curadoria?', a: 'Entendemos o tipo de evento, o perfil da empresa, a quantidade de convidados e as necessidades de estrutura. A partir disso, selecionamos as opções mais compatíveis.' },
+  { q: 'Vocês ajudam em lançamentos de produtos?', a: 'Sim. Indicamos espaços que estejam alinhados à proposta do lançamento, ao perfil dos convidados e à identidade da marca.' },
+  { q: 'Posso contratar a Connect Fun para uma confraternização de fim de ano?', a: 'Sim. Temos opções para diferentes tamanhos de equipe e estilos de celebração, ajudando sua empresa a organizar tudo com mais agilidade e sem dor de cabeça.' },
+  { q: 'Vocês trabalham com coquetéis corporativos?', a: 'Sim. Nossa curadoria considera a proposta do encontro e busca ambientes que favoreçam a circulação, o relacionamento e a interação entre os convidados.' },
+  { q: 'Quanto tempo leva para receber as opções?', a: 'Nossa equipe trabalha com agilidade. Assim que entendemos o que sua empresa precisa, buscamos as alternativas mais compatíveis e apresentamos as possibilidades.' },
+];
+
+const title = 'Lançamentos, Confraternizações e Coquetéis em São Paulo · Connect Fun';
+const description = 'Encontre o espaço ideal para lançamentos de produto, confraternizações de fim de ano e coquetéis corporativos. A Connect Fun conecta sua empresa ao ambiente certo com curadoria especializada em São Paulo.';
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const orgId = new URL('/#organization', Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: empresa.nome,
+      legalName: empresa.razaoSocial,
+      taxID: empresa.cnpj,
+      url: new URL('/', Astro.site).href,
+      logo: new URL(logoConnectfun.src, Astro.site).href,
+      email: empresa.email,
+      sameAs: [empresa.site, empresa.instagram],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: empresa.endereco.rua,
+        addressLocality: empresa.endereco.cidade,
+        addressRegion: empresa.endereco.uf,
+        postalCode: empresa.endereco.cep,
+        addressCountry: 'BR',
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': pageUrl,
+      url: pageUrl,
+      name: title,
+      description,
+      inLanguage: 'pt-BR',
+      primaryImageOfPage: new URL(ogImage.src, Astro.site).href,
+      publisher: { '@id': orgId },
+    },
+    {
+      '@type': 'Service',
+      name: 'Curadoria de espaços para lançamentos, confraternizações e coquetéis corporativos',
+      serviceType: 'Curadoria de espaços para eventos corporativos',
+      areaServed: { '@type': 'City', name: 'São Paulo' },
+      provider: { '@id': orgId },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
 ---
 
 <Base
-  title="Lançamentos, Confraternizações e Coquetéis em São Paulo · Connect Fun"
-  description="Encontre o espaço ideal para lançamentos de produto, confraternizações de fim de ano e coquetéis corporativos. A Connect Fun conecta sua empresa ao ambiente certo com curadoria especializada em São Paulo."
-  ogImage="/images/og-index.jpg"
+  title={title}
+  description={description}
+  ogImage={ogImage.src}
+  jsonLd={jsonLd}
+  googleFonts={false}
 >
+  <Fragment slot="head">
+    <link rel="preload" href="/fonts/KronaOne-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin />
+  </Fragment>
 
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#topo" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" height="32" id="nav-logo" class="logo-visible" /></a>
+    <a href="#topo" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" width="160" height="32" id="nav-logo" class="logo-visible" /></a>
     <nav class="nav-links" id="navLinks">
       <a href="#origem">Quem somos</a>
       <a href="#processo">Como funciona</a>
@@ -89,7 +174,9 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
 <section class="hero" id="topo">
   <div class="hero-bg">
     <div class="hero-slides">
-      <div class="hero-slide" style={`background-image:url('${heroSrc}')`}></div>
+      <div class="hero-slide">
+        <Img src={hero} alt="" priority widths={[640, 960, 1280, 1920]} sizes="100vw" quality={60} class="hero-img" />
+      </div>
     </div>
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
@@ -143,7 +230,7 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
       <div class="about-media reveal">
         <Video
           src="https://media.dmove.com.br/clients/connectfun/videos/CONNECT_FUN_-_Criativo_Funil_03.webm"
-          poster="/poster-lancamentos-confraternizacoes.jpg"
+          poster={poster.src}
           title="Connect Fun — Espaços para lançamentos, confraternizações e coquetéis em São Paulo"
           description="Conheça a Connect Fun e como conectamos empresas aos melhores espaços de São Paulo há mais de 15 anos."
           uploadDate="2024-12-12"
@@ -151,8 +238,8 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
         />
       </div>
       <div class="about-imgs reveal">
-        <img src="https://media.dmove.com.br/clients/connectfun/photos/_MG_4996.webp" alt="Espaço Connect Fun" style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
-        <img src="https://media.dmove.com.br/clients/connectfun/photos/ClubeOne-111.webp" alt="Espaço Connect Fun" style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
+        <Img src="lp/sobre-01.webp" alt="Espaço parceiro da Connect Fun montado para evento" widths={[400, 640, 900]} sizes="(max-width: 960px) 92vw, 380px" quality={70} style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
+        <Img src="lp/sobre-02.webp" alt="Ambiente de evento corporativo em São Paulo" widths={[400, 640, 900]} sizes="(max-width: 960px) 92vw, 380px" quality={70} style="border-radius:14px;width:100%;flex:1;object-fit:cover;min-height:0" />
       </div>
     </div>
   </div>
@@ -205,15 +292,15 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
 <section class="sec-gallery-mid">
   <div class="wrap mid-gallery-desktop">
     <div class="mid-gallery reveal">
-      {midGaleria.map((src) => (
-        <figure class="mid-gal-item" style={`background-image:url('${src}')`}></figure>
+      {midGaleria.map((img) => (
+        <figure class="mid-gal-item"><Img src={img.src} alt={img.alt} widths={[400, 600, 800]} sizes="380px" /></figure>
       ))}
     </div>
   </div>
   <div class="mid-gal-carousel" aria-hidden="true">
     <div class="mid-gal-track">
-      {[...midGaleria, ...midGaleria].map((src) => (
-        <figure class="mid-gal-item" style={`background-image:url('${src}')`}></figure>
+      {[...midGaleria, ...midGaleria].map((img) => (
+        <figure class="mid-gal-item"><Img src={img.src} alt="" widths={[300, 520]} sizes="260px" /></figure>
       ))}
     </div>
   </div>
@@ -229,7 +316,7 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
         <p>Um lançamento coloca sua marca diante de novas pessoas. A escolha do endereço ideal ajuda a construir a percepção sobre o que está sendo mostrado.</p>
       </div>
       <div class="event-type-gallery">
-        <img src={imgLancamento} alt="Lançamento de produto — espaço Connect Fun" class="span-2" />
+        <Img src={imgLancamento} alt="Lançamento de produto em espaço parceiro da Connect Fun" widths={[480, 720, 1080]} sizes="(max-width: 860px) 92vw, 560px" class="span-2" />
       </div>
     </div>
   </div>
@@ -245,7 +332,7 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
         <p>Saia da rotina, brinde às conquistas e crie momentos que aproximam equipes.</p>
       </div>
       <div class="event-type-gallery">
-        <img src={imgConfraternizacao} alt="Confraternização de fim de ano — espaço Connect Fun" class="span-2" />
+        <Img src={imgConfraternizacao} alt="Confraternização de fim de ano em espaço parceiro da Connect Fun" widths={[480, 720, 1080]} sizes="(max-width: 860px) 92vw, 560px" class="span-2" />
       </div>
     </div>
   </div>
@@ -261,7 +348,7 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
         <p>Um coquetel cria espaço para aproximar clientes, parceiros e empresários de uma forma mais espontânea.</p>
       </div>
       <div class="event-type-gallery">
-        <img src={imgCoqueteis} alt="Coquetel corporativo — espaço Connect Fun" class="span-2" />
+        <Img src={imgCoqueteis} alt="Coquetel corporativo em espaço parceiro da Connect Fun" widths={[480, 720, 1080]} sizes="(max-width: 860px) 92vw, 560px" class="span-2" />
       </div>
     </div>
   </div>
@@ -312,8 +399,8 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
   </div>
   <div class="spaces-carousel reveal">
     <div class="spaces-track">
-      {[...espacos, ...espacos].map((src) => (
-        <figure class="spaces-slide" style={`background-image:url('${src}')`}></figure>
+      {[...espacos, ...espacos].map((img, i) => (
+        <figure class="spaces-slide"><Img src={img.src} alt={i < espacos.length ? img.alt : ''} widths={[320, 520, 840]} sizes="(max-width: 600px) 260px, 420px" /></figure>
       ))}
     </div>
   </div>
@@ -339,47 +426,25 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
 </section>
 
 <!-- FAQ -->
-<section class="sec faq-bg" id="faq">
+<section class="sec faq-bg" id="faq" style={`background-image:url('${faqBg.src}')`}>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow dark">Dúvidas frequentes</span>
       <h2 class="display-l">Tudo o que você precisa saber antes de começar a planejar.</h2>
     </div>
     <div class="faq">
-      <div class="qa reveal" aria-expanded="false">
-        <button>A Connect Fun é uma casa de eventos? <span class="ic">+</span></button>
-        <div class="ans"><p>Não. Somos um hub: conectamos a sua empresa ao lugar certo entre mais de 10 opções premium da capital. Em vez de negociar com várias casas, você faz a curadoria, a comparação e a contratação por um único atendimento.</p></div>
-      </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Vocês atendem eventos de quais tamanhos? <span class="ic">+</span></button>
-        <div class="ans"><p>Nosso portfólio reúne opções para diferentes públicos, com espaços que podem receber até 3.000 participantes, conforme o local escolhido.</p></div>
-      </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Como funciona a curadoria? <span class="ic">+</span></button>
-        <div class="ans"><p>Entendemos o tipo de evento, o perfil da empresa, a quantidade de convidados e as necessidades de estrutura. A partir disso, selecionamos as opções mais compatíveis.</p></div>
-      </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Vocês ajudam em lançamentos de produtos? <span class="ic">+</span></button>
-        <div class="ans"><p>Sim. Indicamos espaços que estejam alinhados à proposta do lançamento, ao perfil dos convidados e à identidade da marca.</p></div>
-      </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Posso contratar a Connect Fun para uma confraternização de fim de ano? <span class="ic">+</span></button>
-        <div class="ans"><p>Sim. Temos opções para diferentes tamanhos de equipe e estilos de celebração, ajudando sua empresa a organizar tudo com mais agilidade e sem dor de cabeça.</p></div>
-      </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Vocês trabalham com coquetéis corporativos? <span class="ic">+</span></button>
-        <div class="ans"><p>Sim. Nossa curadoria considera a proposta do encontro e busca ambientes que favoreçam a circulação, o relacionamento e a interação entre os convidados.</p></div>
-      </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Quanto tempo leva para receber as opções? <span class="ic">+</span></button>
-        <div class="ans"><p>Nossa equipe trabalha com agilidade. Assim que entendemos o que sua empresa precisa, buscamos as alternativas mais compatíveis e apresentamos as possibilidades.</p></div>
-      </div>
+      {faq.map(({ q, a }) => (
+        <div class="qa reveal">
+          <button type="button" aria-expanded="false">{q} <span class="ic" aria-hidden="true">+</span></button>
+          <div class="ans"><p>{a}</p></div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <!-- CTA FINAL / FORM -->
-<section class="sec cta-final" id="contato" style="background-image:url('https://media.dmove.com.br/clients/connectfun/photos/ClubeOne-126.webp')">
+<section class="sec cta-final" id="contato" style={`background-image:url('${ctaBg.src}')`}>
   <div class="glow"></div>
   <div class="wrap">
     <div class="cta-grid">
@@ -432,15 +497,7 @@ const imgCoqueteis = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8
 />
 
 <!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-bottom" style="border-top:0;padding-top:0">
-      <span>Copyright © 2026 Connect Fun - Todos os direitos reservados</span>
-      <a href="#topo" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" height="28" /></a>
-      <span class="dev-credit">Desenvolvido por <a href="https://dmove.com.br" target="_blank" rel="noopener"><Img src="logo-dmove.webp" alt="Dmove" width={96} style="display:inline-block;vertical-align:middle;opacity:1;transition:opacity .2s" /></a></span>
-    </div>
-  </div>
-</footer>
+<SiteFooter />
 
 </Base>
 

@@ -160,3 +160,20 @@
   }
   .event-type-grid.reverse .event-type-gallery { order: 0; }
 }
+
+/* Imagens reais (com srcset) no lugar de background-image: carregam no tamanho certo e com lazy-load */
+.hero-slide .hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mid-gal-item img,
+.spaces-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.spaces-slide { overflow: hidden; }

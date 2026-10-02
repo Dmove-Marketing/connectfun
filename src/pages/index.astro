@@ -1,6 +1,7 @@
 ---
 // Gerado a partir de: index.html
 import Base from '../layouts/Base.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import Video from '../components/ui/Video.astro';
@@ -295,28 +296,28 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
       <h2 class="display-l">O que costumam nos perguntar.</h2>
     </div>
     <div class="faq">
-      <div class="qa reveal" aria-expanded="false">
-        <button>A Connect Fun é uma casa de eventos? <span class="ic">+</span></button>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">A Connect Fun é uma casa de eventos? <span class="ic">+</span></button>
         <div class="ans"><p>Não. Somos um hub: conectamos a sua empresa ao lugar certo entre mais de 10 opções premium da capital. Em vez de negociar com várias casas, você faz a curadoria, a comparação e a contratação por um único atendimento.</p></div>
       </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Vocês atendem equipes de quais tamanhos? <span class="ic">+</span></button>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">Vocês atendem equipes de quais tamanhos? <span class="ic">+</span></button>
         <div class="ans"><p>De grupos reservados a grandes convenções de capacitação. Conforme o local selecionado, é possível receber até 3.000 participantes, com estrutura para pequeno, médio e grande porte.</p></div>
       </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Que tipos de treinamento vocês atendem? <span class="ic">+</span></button>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">Que tipos de treinamento vocês atendem? <span class="ic">+</span></button>
         <div class="ans"><p>Treinamentos técnicos, workshops, onboarding, imersões de liderança, kickoffs, reciclagens e certificações, entre outros formatos. Se o objetivo é a sua equipe aprender, achamos o ambiente sob medida.</p></div>
       </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Os locais têm estrutura para um dia inteiro? <span class="ic">+</span></button>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">Os locais têm estrutura para um dia inteiro? <span class="ic">+</span></button>
         <div class="ans"><p>Sim. Priorizamos ambientes com bom áudio e vídeo, conforto, iluminação adequada, salas de apoio e opções de alimentação, para manter a turma engajada do começo ao fim.</p></div>
       </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Em quanto tempo recebo um retorno? <span class="ic">+</span></button>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">Em quanto tempo recebo um retorno? <span class="ic">+</span></button>
         <div class="ans"><p>Agilidade é um dos nossos pilares. Depois de entender o que você precisa, a equipe comercial volta rápido com as alternativas e os próximos passos.</p></div>
       </div>
-      <div class="qa reveal" aria-expanded="false">
-        <button>Vocês acompanham além da contratação? <span class="ic">+</span></button>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">Vocês acompanham além da contratação? <span class="ic">+</span></button>
         <div class="ans"><p>Sim. Apoiamos o cliente em todas as etapas, da seleção à operação no dia. Infraestrutura e experiência operacional fazem parte do que entregamos.</p></div>
       </div>
     </div>
@@ -378,15 +379,7 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
 />
 
 <!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-bottom" style="border-top:0;padding-top:0">
-      <span>Copyright © 2026 Connect Fun. Todos os direitos reservados.</span>
-      <a href="#topo" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" height="28" /></a>
-      <span class="dev-credit">Desenvolvido por <a href="https://dmove.com.br" target="_blank" rel="noopener"><Img src="logo-dmove.webp" alt="Dmove" width={96} style="display:inline-block;vertical-align:middle;opacity:1;transition:opacity .2s" /></a></span>
-    </div>
-  </div>
-</footer>
+<SiteFooter />
 
 
 </Base>

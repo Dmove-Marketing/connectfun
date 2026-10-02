@@ -36,7 +36,7 @@ const schema = {
   name: title,
   description,
   contentUrl: src,
-  thumbnailUrl: poster,
+  thumbnailUrl: poster && Astro.site ? new URL(poster, Astro.site).href : poster,
   ...(uploadDate && { uploadDate }),
   ...(duration && { duration }),
 };

@@ -9,6 +9,10 @@ interface Props {
   /** true = eager + fetchpriority high (use na imagem LCP/hero) */
   priority?: boolean;
   quality?: number;
+  /** Larguras geradas para o srcset (ex: [480, 800, 1200]). Use junto com `sizes`. */
+  widths?: number[];
+  /** Atributo sizes do srcset (ex: "(max-width: 860px) 92vw, 560px") */
+  sizes?: string;
   class?: string;
   style?: string;
 }
@@ -20,6 +24,8 @@ const {
   height,
   priority = false,
   quality = 80,
+  widths,
+  sizes,
   class: className,
   style,
 } = Astro.props;
@@ -41,9 +47,12 @@ if (!mod) {
   <Image
     src={mod.default}
     alt={alt}
-    width={width}
+    width={widths ? Math.max(...widths) : width}
     height={height}
+    widths={widths}
+    sizes={sizes}
     loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
     fetchpriority={priority ? 'high' : undefined}
     quality={quality}
     class={className}

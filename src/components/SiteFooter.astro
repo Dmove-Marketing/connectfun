@@ -1,0 +1,41 @@
+---
+// Rodapé institucional: identificação da empresa (CNPJ, endereço, contato) + política de privacidade.
+// Transparência sobre quem anuncia conta na "experiência na página de destino" do Google Ads.
+import Img from './ui/Img.astro';
+import logoConnectfun from '../assets/images/logo-connectfun.png';
+import { empresa, enderecoCompleto, politicaUrl } from '../data/empresa';
+
+const ano = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap">
+    <div class="foot-info">
+      <p><strong>{empresa.razaoSocial}</strong> · CNPJ {empresa.cnpj}</p>
+      <p>{enderecoCompleto}</p>
+      <p>{empresa.email}</p>
+      <p><a href={politicaUrl} target="_blank" rel="noopener">Política de privacidade</a></p>
+    </div>
+    <div class="foot-bottom">
+      <span>Copyright © {ano} {empresa.nome}. Todos os direitos reservados.</span>
+      <a href="#topo" class="logo"><img src={logoConnectfun.src} alt={empresa.nome} width="140" height="28" loading="lazy" /></a>
+      <span class="dev-credit">Desenvolvido por <a href="https://dmove.com.br" target="_blank" rel="noopener"><Img src="logo-dmove.webp" alt="Dmove" width={96} style="display:inline-block;vertical-align:middle;opacity:1;transition:opacity .2s" /></a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot-info {
+    display: grid;
+    gap: 6px;
+    text-align: center;
+    font-size: .8rem;
+    line-height: 1.6;
+    color: var(--slate-light);
+    opacity: .8;
+    margin-bottom: 28px;
+  }
+  .foot-info strong { font-weight: 600; }
+  .foot-info a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .foot-info a:hover { color: var(--magenta-glow); }
+</style>

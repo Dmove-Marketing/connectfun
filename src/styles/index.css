@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'Poppins';
-  src: url('/fonts/Poppins-Light.ttf') format('truetype');
+  src: url('/fonts/Poppins-Light.woff2') format('woff2'), url('/fonts/Poppins-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: 'Krona One';
-  src: url('/fonts/KronaOne-Regular.ttf') format('truetype');
+  src: url('/fonts/KronaOne-Regular.woff2') format('woff2'), url('/fonts/KronaOne-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -74,8 +74,8 @@
     transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
     line-height:1;
   }
-  .btn-primary{background:var(--magenta);color:#fff;box-shadow:0 10px 30px -10px rgba(233,58,125,.7)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(233,58,125,.85);background:#f5478a}
+  .btn-primary{background:#D6306F;color:#fff;box-shadow:0 10px 30px -10px rgba(233,58,125,.7)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(233,58,125,.85);background:#C8265F}
   .btn-ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
   .btn-ghost:hover{border-color:var(--magenta-glow);color:var(--magenta-glow)}
   .btn-dark{background:var(--ink);color:#fff}
@@ -335,7 +335,7 @@
   .qa{border-bottom:1px solid var(--line-dark)}
   .qa button{width:100%;background:none;border:0;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 4px;font-family:var(--display);font-weight:600;font-size:1.12rem;color:var(--ink)}
   .qa .ic{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--line-dark);display:grid;place-items:center;transition:.3s;color:var(--magenta)}
-  .qa[aria-expanded="true"] .ic{background:var(--magenta);color:#fff;border-color:var(--magenta);transform:rotate(45deg)}
+  .qa.open .ic{background:var(--magenta);color:#fff;border-color:var(--magenta);transform:rotate(45deg)}
   .qa .ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
   .qa .ans p{padding:0 4px 26px;color:var(--slate);font-size:.98rem;max-width:68ch}
 
