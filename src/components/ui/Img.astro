@@ -52,7 +52,7 @@ if (!mod) {
     widths={widths}
     sizes={sizes}
     loading={priority ? 'eager' : 'lazy'}
-    decoding={priority ? 'sync' : 'async'}
+    decoding={priority ? undefined : 'async'}
     fetchpriority={priority ? 'high' : undefined}
     quality={quality}
     class={className}

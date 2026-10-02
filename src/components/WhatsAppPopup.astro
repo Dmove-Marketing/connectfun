@@ -179,10 +179,7 @@ const msgId      = `${formId}FormMsg`;
 
 <script>
   import { initForms } from '../scripts/forms.ts';
-  import flatpickr from 'flatpickr';
-  import { Portuguese } from 'flatpickr/dist/l10n/pt.js';
-
-  flatpickr.localize(Portuguese);
+  import { attachDatepicker } from '../scripts/datepicker.ts';
 
   function applyPhoneMask(input: HTMLInputElement) {
     input.addEventListener('input', () => {
@@ -224,10 +221,7 @@ const msgId      = `${formId}FormMsg`;
     iconX.style.display  = 'block';
 
     // Init datepicker + phone mask on first open
-    popup.querySelectorAll<HTMLInputElement>('[data-datepicker]').forEach((el) => {
-      if ((el as any)._flatpickr) return;
-      flatpickr(el, { dateFormat: 'd/m/Y', minDate: 'today', disableMobile: true, allowInput: false });
-    });
+    popup.querySelectorAll<HTMLInputElement>('[data-datepicker]').forEach(attachDatepicker);
     popup.querySelectorAll<HTMLInputElement>('[data-mask="phone"]').forEach((el) => {
       if (el.dataset.maskInit) return;
       el.dataset.maskInit = '1';
