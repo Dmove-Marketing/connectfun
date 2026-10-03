@@ -2,10 +2,10 @@ import type { LpConteudo } from './types';
 
 // C2.2 Treinamento e Workshop (ficha 3.3). Layouts de sala e internet (⚠️) ficam de fora até confirmar.
 export const treinamentoWorkshop: LpConteudo = {
-  base: '/treinamento-workshop/',
+  id: 'treinamento-workshop',
   campanha: 'C2 Eventos Corporativos',
   variantes: [{
-    slug: '',
+    path: '/treinamento-workshop/',
     grupo: 'C2.2 Treinamento e Workshop',
     h1: 'Espaço para treinamento e workshop em São Paulo',
     title: 'Espaço para Treinamento e Workshop em SP | Connect Fun',

@@ -1,0 +1,19 @@
+---
+// Todas as LPs de campanha (src/data/lps). Cada variante vira uma página no seu próprio caminho.
+// Páginas estáticas em src/pages (bio, política etc.) têm prioridade sobre esta rota.
+import LpTemplate from '../components/lp/LpTemplate.astro';
+import { lps } from '../data/lps';
+
+export function getStaticPaths() {
+  return lps.flatMap((conteudo) =>
+    conteudo.variantes.map((variante) => ({
+      params: { lp: variante.path.replace(/^\/|\/$/g, '') },
+      props: { conteudo, variante },
+    })),
+  );
+}
+
+const { conteudo, variante } = Astro.props;
+---
+
+<LpTemplate conteudo={conteudo} variante={variante} />

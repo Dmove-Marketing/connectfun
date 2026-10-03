@@ -2,10 +2,10 @@ import type { LpConteudo } from './types';
 
 // C2.4 Convenção e Plenária (ficha 3.5). O esquema da GT House (duas plenárias) é obrigatório aqui.
 export const convencaoPlenaria: LpConteudo = {
-  base: '/convencao-plenaria/',
+  id: 'convencao-plenaria',
   campanha: 'C2 Eventos Corporativos',
   variantes: [{
-    slug: '',
+    path: '/convencao-plenaria/',
     grupo: 'C2.4 Convenção e Plenária',
     h1: 'Espaço para convenções e plenárias em São Paulo',
     title: 'Espaço para Convenção e Plenária em SP | Connect Fun',

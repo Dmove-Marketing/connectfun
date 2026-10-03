@@ -2,10 +2,10 @@ import type { LpConteudo } from './types';
 
 // C2.3 Palestra e Auditório (ficha 3.4). Camarim e transmissão (⚠️) ficam de fora até confirmar.
 export const palestrasAuditorio: LpConteudo = {
-  base: '/palestras-auditorio/',
+  id: 'palestras-auditorio',
   campanha: 'C2 Eventos Corporativos',
   variantes: [{
-    slug: '',
+    path: '/palestras-auditorio/',
     grupo: 'C2.3 Palestra e Auditório',
     h1: 'Espaço para palestras em São Paulo, com auditório e LED',
     title: 'Espaço para Palestras e Auditório em SP | Connect Fun',

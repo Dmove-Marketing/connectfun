@@ -2,10 +2,10 @@ import type { LpConteudo } from './types';
 
 // C2.6 Lançamento e Coquetel Corporativo (ficha 3.7). Cenografia (⚠️) fica de fora até confirmar.
 export const lancamentoCoquetel: LpConteudo = {
-  base: '/lancamento-coquetel/',
+  id: 'lancamento-coquetel',
   campanha: 'C2 Eventos Corporativos',
   variantes: [{
-    slug: '',
+    path: '/lancamento-coquetel/',
     grupo: 'C2.6 Lançamento e Coquetel Corporativo',
     h1: 'Espaço para lançamento de produto e coquetel corporativo em SP',
     title: 'Espaço para Lançamento de Produto em SP | Connect Fun',

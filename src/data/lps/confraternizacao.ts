@@ -1,27 +1,29 @@
 import type { LpConteudo } from './types';
 
 // Campanha C1 — Confraternização (ficha 3.1 do direcionamento).
+// Uma página por grupo de anúncios, cada uma no slug do objetivo do grupo (decisão de 03/10/2026):
+// a "fonte" do lead no VOE fica legível e cada página tem canonical próprio.
 // Urgência de datas nov/dez fica de fora até o cliente confirmar disponibilidade.
 export const confraternizacao: LpConteudo = {
-  base: '/confraternizacao-empresa/',
+  id: 'confraternizacao',
   campanha: 'C1 Confraternização',
   variantes: [
     {
-      slug: '',
+      path: '/espaco-confraternizacao/',
       grupo: 'C1.1 Espaço para Confraternização',
       h1: 'Espaço para confraternização de empresa em São Paulo',
       title: 'Espaço para Confraternização de Empresa em SP | Connect Fun',
       description: 'Confraternização e festa de fim de ano da sua empresa em casas exclusivas em SP. De 30 a 220 pessoas, com gastronomia, bar e A&V. Peça seu orçamento.',
     },
     {
-      slug: 'casas-exclusivas',
+      path: '/confraternizacao-empresa/',
       grupo: 'C1.2 Confraternização de Empresa',
       h1: 'Confraternização de empresa em casas exclusivas em SP',
       title: 'Confraternização em Casas Exclusivas em SP | Connect Fun',
       description: 'Confraternização da sua empresa em casas exclusivas em Pinheiros e Higienópolis. De 30 a 220 pessoas, com gastronomia, bar e A&V. Peça seu orçamento.',
     },
     {
-      slug: 'festa-de-fim-de-ano',
+      path: '/festa-fim-de-ano/',
       grupo: 'C1.3 Festa de Fim de Ano',
       h1: 'Festa de fim de ano da sua empresa em São Paulo',
       title: 'Festa de Fim de Ano da Empresa em SP | Connect Fun',
@@ -30,7 +32,7 @@ export const confraternizacao: LpConteudo = {
       urgencia: 'Novembro e dezembro são os meses mais disputados. Reserve a data da festa da sua empresa.',
     },
     {
-      slug: 'happy-hour-corporativo',
+      path: '/happy-hour-corporativo/',
       grupo: 'C1.4 Happy Hour Corporativo',
       h1: 'Happy hour corporativo em casas exclusivas em SP',
       title: 'Happy Hour Corporativo em SP | Connect Fun',

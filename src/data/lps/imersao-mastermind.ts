@@ -2,10 +2,10 @@ import type { LpConteudo } from './types';
 
 // C2.5 Imersão e Mastermind (ficha 3.6). One House em destaque (intimista), GT House para turmas maiores.
 export const imersaoMastermind: LpConteudo = {
-  base: '/imersao-mastermind/',
+  id: 'imersao-mastermind',
   campanha: 'C2 Eventos Corporativos',
   variantes: [{
-    slug: '',
+    path: '/imersao-mastermind/',
     grupo: 'C2.5 Imersão e Mastermind',
     h1: 'Espaço para imersões e masterminds em São Paulo',
     title: 'Espaço para Imersão e Mastermind em SP | Connect Fun',

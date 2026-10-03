@@ -1,0 +1,44 @@
+---
+// Página "não encontrada". O nginx precisa servir este arquivo com status 404
+// (docs/nginx-eventos.connectfun.conf) — hoje ele entrega a home para qualquer endereço.
+import Base from '../layouts/Base.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import logoConnectfun from '../assets/images/logo-connectfun.png';
+import { lps } from '../data/lps';
+import '../styles/index.css';
+
+const paginas = lps.flatMap((lp) => lp.variantes.map((v) => ({ href: v.path, texto: v.h1 })));
+---
+
+<Base title="Página não encontrada · Connect Fun" description="A página que você procurou não existe. Veja os espaços para eventos corporativos da Connect Fun." noIndex googleFonts={false}>
+
+<header class="nav scrolled" id="topo">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" width="160" height="32" class="logo-visible" /></a>
+  </div>
+</header>
+
+<main class="sec nf">
+  <div class="wrap">
+    <span class="eyebrow">Erro 404</span>
+    <h1>Esta página não existe.</h1>
+    <p class="lead">O endereço pode ter mudado. Escolha o tipo de evento que você procura:</p>
+    <ul class="nf-links">
+      {paginas.map((p) => <li><a href={p.href}>{p.texto}</a></li>)}
+    </ul>
+    <a href="/" class="btn btn-primary">Ir para a página inicial</a>
+  </div>
+</main>
+
+<SiteFooter />
+</Base>
+
+<style>
+  .nf { padding-top: 140px; min-height: 70vh; }
+  .nf .wrap { max-width: 760px; }
+  .nf h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 14px 0 12px; }
+  .nf .lead { margin-bottom: 28px; }
+  .nf-links { list-style: none; display: grid; gap: 10px; margin-bottom: 32px; }
+  .nf-links a { display: block; padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; color: var(--paper); text-decoration: none; background: rgba(255,255,255,.025); }
+  .nf-links a:hover { border-color: rgba(233,58,125,.55); }
+</style>

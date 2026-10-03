@@ -2,8 +2,8 @@
 // o layout é único (src/components/lp/LpTemplate.astro).
 
 export interface LpVariante {
-  /** segmento da URL ('' = página principal) */
-  slug: string;
+  /** caminho completo da página, ex.: '/festa-fim-de-ano/'. Cada variante tem canonical para si mesma. */
+  path: string;
   /** grupo de anúncios atendido, ex.: "C1.3 Festa de Fim de Ano" */
   grupo: string;
   h1: string;
@@ -18,8 +18,8 @@ export interface LpVariante {
 }
 
 export interface LpConteudo {
-  /** caminho base, ex.: '/confraternizacao-empresa/' */
-  base: string;
+  /** identificador da LP (usado em comentários/relatórios) */
+  id: string;
   campanha: string;
   variantes: LpVariante[];
   subtitulo: string;

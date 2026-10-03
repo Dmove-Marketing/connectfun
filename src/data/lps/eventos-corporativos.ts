@@ -2,10 +2,10 @@ import type { LpConteudo } from './types';
 
 // C2.1 Evento Corporativo (ficha 3.2) — página guarda-chuva da C2.
 export const eventosCorporativos: LpConteudo = {
-  base: '/eventos-corporativos/',
+  id: 'eventos-corporativos',
   campanha: 'C2 Eventos Corporativos',
   variantes: [{
-    slug: '',
+    path: '/eventos-corporativos/',
     grupo: 'C2.1 Evento Corporativo',
     h1: 'Espaço para eventos corporativos em São Paulo',
     title: 'Espaço para Eventos Corporativos em São Paulo | Connect Fun',

@@ -23,10 +23,10 @@ interface Props {
 }
 const { conteudo: c, variante: v } = Astro.props;
 
-const pathVariante = v.slug ? `${c.base}${v.slug}/` : c.base;
-const canonical = new URL(c.base, Astro.site).href; // variantes apontam para a página principal
-const pageUrl = new URL(pathVariante, Astro.site).href;
-const formId = `lp-${c.base.replace(/\//g, '')}${v.slug ? '-' + v.slug : ''}`;
+const pathVariante = v.path;
+const canonical = new URL(pathVariante, Astro.site).href; // cada página é canônica de si mesma
+const pageUrl = canonical;
+const formId = `lp-${pathVariante.replace(/^\/|\/$/g, '').replace(/\//g, '-')}`;
 const fonte = `Landing page${pathVariante.replace(/\/$/, '')}`;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpg,jpeg,png,webp}', { eager: true });
