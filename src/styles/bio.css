@@ -165,14 +165,14 @@ img { max-width: 100%; display: block; }
   line-height: 1;
 }
 .btn-primary {
-  background: var(--magenta);
+  background: #D6306F; /* magenta escurecido: contraste AA com texto branco (igual às LPs) */
   color: #fff;
   box-shadow: 0 10px 30px -10px rgba(233,58,125,.7);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 40px -10px rgba(233,58,125,.85);
-  background: #f5478a;
+  background: #C8265F;
 }
 
 /* ── Card do formulário ── */

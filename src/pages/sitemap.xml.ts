@@ -9,7 +9,7 @@ export const GET: APIRoute = ({ site }) => {
     .map((file) => file.replace(/^\.\//, '').replace(/\.astro$/, '').replace(/(^|\/)index$/, ''))
     .filter((path) => !path.split('/').some((seg) => seg.startsWith('_') || seg.startsWith('[') || seg === '404'))
     .map((path) => new URL(path ? `/${path}/` : '/', site).href)
-    .concat(lps.flatMap((lp) => lp.variantes.map((v) => new URL(v.path, site).href)))
+    .concat(lps.flatMap((lp) => lp.variantes.filter((v) => !v.noIndex).map((v) => new URL(v.path, site).href)))
     .sort();
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

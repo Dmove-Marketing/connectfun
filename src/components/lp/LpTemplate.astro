@@ -112,7 +112,7 @@ const jsonLd = {
 };
 ---
 
-<Base title={v.title} description={v.description} canonical={canonical} ogImage={ogImage.src} jsonLd={jsonLd} googleFonts={false}>
+<Base title={v.title} description={v.description} canonical={canonical} ogImage={ogImage.src} jsonLd={jsonLd} googleFonts={false} noIndex={v.noIndex}>
   <Fragment slot="head">
     <link rel="preload" href="/fonts/KronaOne-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin />
@@ -154,7 +154,7 @@ const jsonLd = {
   <div class="wrap">
     <div class="lp-hero-grid">
       <div class="hero-content lp-hero-text">
-        <span class="eyebrow">Casas exclusivas em São Paulo</span>
+        <span class="eyebrow">{c.eyebrowHero ?? 'Casas exclusivas em São Paulo'}</span>
         <h1>{v.h1}</h1>
         <p class="lead lp-hero-sub">{subtitulo}</p>
         <ul class="lp-proofs">

@@ -15,6 +15,8 @@ export interface LpVariante {
   subtitulo?: string;
   /** sobrescreve a frase de urgência nesta variante */
   urgencia?: string;
+  /** página de prévia: noindex e fora do sitemap */
+  noIndex?: boolean;
 }
 
 export interface LpConteudo {
@@ -39,6 +41,8 @@ export interface LpConteudo {
     fotos: { src: string; alt: string }[];
   };
   casasIntro: string;
+  /** eyebrow do topo (padrão: "Casas exclusivas em São Paulo") */
+  eyebrowHero?: string;
   /** 'one' coloca a One House antes da GT House (ex.: imersões) */
   casaPrimeiro?: 'gt' | 'one';
   /** cards de formatos com link (página guarda-chuva) */
