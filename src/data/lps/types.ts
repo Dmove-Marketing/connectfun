@@ -39,6 +39,12 @@ export interface LpConteudo {
     fotos: { src: string; alt: string }[];
   };
   casasIntro: string;
+  /** 'one' coloca a One House antes da GT House (ex.: imersões) */
+  casaPrimeiro?: 'gt' | 'one';
+  /** cards de formatos com link (página guarda-chuva) */
+  cards?: { titulo: string; texto: string; href?: string }[];
+  /** seção "Para agências e empresas" */
+  agencias?: { titulo: string; texto: string; itens: string[] };
   /** qual casa aparece primeiro / em destaque no texto */
   casaDestaqueTexto: string;
   faq: { q: string; a: string }[];

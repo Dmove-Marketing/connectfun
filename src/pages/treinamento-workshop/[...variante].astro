@@ -1,0 +1,12 @@
+---
+import LpTemplate from '../../components/lp/LpTemplate.astro';
+import { treinamentoWorkshop } from '../../data/lps/treinamento-workshop';
+
+export function getStaticPaths() {
+  return treinamentoWorkshop.variantes.map((v) => ({ params: { variante: v.slug || undefined }, props: { variante: v } }));
+}
+
+const { variante } = Astro.props;
+---
+
+<LpTemplate conteudo={treinamentoWorkshop} variante={variante} />

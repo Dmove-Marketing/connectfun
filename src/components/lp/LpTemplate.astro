@@ -205,6 +205,33 @@ const jsonLd = {
       <p class="lead">{c.casasIntro}</p>
     </div>
 
+{c.casaPrimeiro === 'one' ? (<>
+    <article class="lp-casa lp-casa-one reveal">
+      <div class="lp-casa-text">
+        <span class="lp-tag">{oneHouse.bairro}</span>
+        <h3>{oneHouse.nome}</h3>
+        <p>{oneHouse.resumo} Ideal para grupos menores e eventos com clima intimista, com até 150 pessoas em formato coquetel.</p>
+        <ul class="lp-stats">
+          {oneHouse.destaques.map((d) => <li><b>{d.valor}</b><span>{d.rotulo}</span></li>)}
+        </ul>
+      </div>
+    </article>
+    <article class="lp-casa lp-casa-gt reveal">
+      <div class="lp-casa-media">
+        <Img src="casas/gt-house/dois-andares.jpg" alt="GT House: estrutura com dois andares de plenárias e jardim" widths={[480, 720, 1080]} sizes="(max-width: 960px) 92vw, 560px" quality={65} />
+        <GtHouseEsquema />
+      </div>
+      <div class="lp-casa-text">
+        <span class="lp-tag">{gtHouse.bairro}</span>
+        <h3>{gtHouse.nome}</h3>
+        <p>Duas plenárias na mesma casa, uma em cima da outra: a <strong>Plenária Elevado</strong> recebe até 220 pessoas com painel de LED de 25 m², e a <strong>Plenária Térrea</strong>, até 170 pessoas com LED de 10 m². Completam a casa o jardim para até 120 convidados e o pé-direito de 8 m.</p>
+        <ul class="lp-stats">
+          {gtHouse.destaques.map((d) => <li><b>{d.valor}</b><span>{d.rotulo}</span></li>)}
+        </ul>
+      </div>
+    </article>
+
+</>) : (<>
     <article class="lp-casa lp-casa-gt reveal">
       <div class="lp-casa-media">
         <Img src="casas/gt-house/dois-andares.jpg" alt="GT House: estrutura com dois andares de plenárias e jardim" widths={[480, 720, 1080]} sizes="(max-width: 960px) 92vw, 560px" quality={65} />
@@ -230,6 +257,7 @@ const jsonLd = {
         </ul>
       </div>
     </article>
+</>)}
 
     <div class="lp-inline-cta reveal">
       <a href="#orcamento" class="btn btn-primary">Solicitar orçamento <span class="arr">→</span></a>
@@ -264,6 +292,42 @@ const jsonLd = {
     </div>
   </div>
 </section>
+
+{c.cards && (
+<section class="sec" id="formatos">
+  <div class="wrap">
+    <div class="sec-head lp-center reveal">
+      <span class="eyebrow">Formatos</span>
+      <h2 class="display-l">Um espaço para cada tipo de evento corporativo.</h2>
+    </div>
+    <div class="lp-cards">
+      {c.cards.map((cd) => (
+        cd.href
+          ? <a class="lp-card reveal" href={cd.href}><h3>{cd.titulo}</h3><p>{cd.texto}</p><span class="lp-card-more">Ver detalhes →</span></a>
+          : <div class="lp-card reveal"><h3>{cd.titulo}</h3><p>{cd.texto}</p></div>
+      ))}
+    </div>
+  </div>
+</section>
+)}
+
+{c.agencias && (
+<section class="sec plum" id="agencias">
+  <div class="wrap">
+    <div class="lp-agencias reveal">
+      <div>
+        <span class="eyebrow">Para agências e empresas</span>
+        <h2 class="display-l">{c.agencias.titulo}</h2>
+        <p class="lead">{c.agencias.texto}</p>
+        <a href="#orcamento" class="btn btn-primary lp-formato-cta">Solicitar orçamento <span class="arr">→</span></a>
+      </div>
+      <ul class="lp-check">
+        {c.agencias.itens.map((it) => <li>{it}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+)}
 
 <!-- 4. SOLUÇÃO COMPLETA -->
 <section class="sec" id="solucao">

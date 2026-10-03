@@ -155,3 +155,30 @@
   body.lp-form-visivel .lp .wa-fab,
   body.lp-form-visivel .lp .wa-teaser { opacity: 0; transform: scale(.8); pointer-events: none; }
 }
+
+/* Cards de formatos (página guarda-chuva) */
+.lp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.lp-card {
+  display: flex; flex-direction: column; gap: 8px; padding: 24px; border: 1px solid var(--line); border-radius: 18px;
+  background: rgba(255,255,255,.025); color: inherit; text-decoration: none; transition: border-color .2s, transform .2s;
+}
+a.lp-card:hover { border-color: rgba(233,58,125,.55); transform: translateY(-2px); }
+.lp-card h3 { font-family: var(--body); font-weight: 600; font-size: 1.05rem; }
+.lp-card p { font-size: .9rem; color: var(--slate-light); line-height: 1.6; flex: 1; }
+.lp-card-more { font-size: .85rem; color: var(--magenta-glow); }
+
+/* Agências */
+.lp-agencias { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+.lp-agencias .lead { margin-top: 16px; }
+.lp-check { list-style: none; display: grid; gap: 12px; }
+.lp-check li { position: relative; padding: 14px 16px 14px 44px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); color: var(--slate-light); }
+.lp-check li::before { content: "✓"; position: absolute; left: 16px; top: 13px; color: var(--magenta-glow); font-weight: 700; }
+
+@media (max-width: 960px) {
+  .lp-cards { grid-template-columns: 1fr 1fr; }
+  .lp-agencias { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 600px) {
+  .lp-cards { grid-template-columns: 1fr; gap: 10px; }
+  .lp-card { padding: 18px; }
+}
