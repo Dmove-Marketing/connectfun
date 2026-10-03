@@ -1,0 +1,393 @@
+---
+// Layout único das LPs de campanha (direcionamento "Índice de Qualidade", out/2026).
+// Ordem das seções segue a 2.3 do documento: dobra → casas → formato → solução completa
+// → prova → hub → FAQ → CTA/formulário. O conteúdo vem de src/data/lps/*.ts.
+import Base from '../../layouts/Base.astro';
+import SiteFooter from '../SiteFooter.astro';
+import Img from '../ui/Img.astro';
+import LeadForm from '../forms/LeadForm.astro';
+import WhatsAppWidget from '../ui/WhatsAppWidget.astro';
+import GtHouseEsquema from './GtHouseEsquema.astro';
+import config from '../../../config.json';
+import { empresa } from '../../data/empresa';
+import { gtHouse, oneHouse } from '../../data/casas';
+import { clientes } from '../../data/clientes';
+import type { LpConteudo, LpVariante } from '../../data/lps/types';
+import { getImage } from 'astro:assets';
+import logoConnectfun from '../../assets/images/logo-connectfun.png';
+import '../../styles/lp.css';
+
+interface Props {
+  conteudo: LpConteudo;
+  variante: LpVariante;
+}
+const { conteudo: c, variante: v } = Astro.props;
+
+const pathVariante = v.slug ? `${c.base}${v.slug}/` : c.base;
+const canonical = new URL(c.base, Astro.site).href; // variantes apontam para a página principal
+const pageUrl = new URL(pathVariante, Astro.site).href;
+const formId = `lp-${c.base.replace(/\//g, '')}${v.slug ? '-' + v.slug : ''}`;
+const fonte = `Landing page${pathVariante.replace(/\/$/, '')}`;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpg,jpeg,png,webp}', { eager: true });
+const heroMeta = images[`/src/assets/images/${c.heroImg}`].default;
+const ogImage = await getImage({ src: heroMeta, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 75 });
+const ctaBg = await getImage({ src: images['/src/assets/images/casas/gt-house/fachada-deck.jpg'].default, width: 1600, quality: 45, format: 'webp' });
+
+const subtitulo = v.subtitulo ?? c.subtitulo;
+const urgencia = v.urgencia ?? c.urgencia;
+
+// Mesmos campos de hoje (decisão do usuário); ids prefixados porque há 2 formulários na página.
+const camposForm = (px: string) => [
+  { name: 'Nome', id: `${px}nome`, type: 'text', placeholder: 'Seu nome', required: true },
+  { name: 'WhatsApp', id: `${px}whatsapp`, type: 'tel', placeholder: 'WhatsApp com DDD', required: true, mask: 'phone' },
+  { name: 'E-mail', id: `${px}email`, type: 'email', placeholder: 'E-mail corporativo', required: true },
+  { name: 'Tipo de evento', id: `${px}tipo`, type: 'select', placeholder: '', required: true, options: opcoesTipo },
+  { name: 'Data do evento', id: `${px}data`, type: 'date', placeholder: 'Data prevista do evento', required: true },
+  { name: 'Convidados', id: `${px}convidados`, type: 'number', placeholder: 'Nº aproximado de convidados', required: true, min: '1' },
+] as any[];
+
+const opcoesTipo = [
+  { value: '', label: 'Tipo de evento' },
+  ...c.opcoesTipo.map((o) => ({ value: o, label: o, selected: o === (v.tipoEvento ?? c.tipoEvento) })),
+];
+
+const orgId = new URL('/#organization', Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: empresa.nome,
+      legalName: empresa.razaoSocial,
+      taxID: empresa.cnpj,
+      url: new URL('/', Astro.site).href,
+      logo: new URL(logoConnectfun.src, Astro.site).href,
+      email: empresa.email,
+      sameAs: [empresa.site, empresa.instagram],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: empresa.endereco.rua,
+        addressLocality: empresa.endereco.cidade,
+        addressRegion: empresa.endereco.uf,
+        postalCode: empresa.endereco.cep,
+        addressCountry: 'BR',
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': pageUrl,
+      url: pageUrl,
+      name: v.title,
+      description: v.description,
+      inLanguage: 'pt-BR',
+      primaryImageOfPage: new URL(ogImage.src, Astro.site).href,
+      publisher: { '@id': orgId },
+    },
+    {
+      '@type': 'EventVenue',
+      name: gtHouse.nome,
+      maximumAttendeeCapacity: 220,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: empresa.endereco.rua,
+        addressLocality: empresa.endereco.cidade,
+        addressRegion: empresa.endereco.uf,
+        postalCode: empresa.endereco.cep,
+        addressCountry: 'BR',
+      },
+    },
+    {
+      '@type': 'EventVenue',
+      name: oneHouse.nome,
+      maximumAttendeeCapacity: 150,
+      address: { '@type': 'PostalAddress', addressLocality: `${oneHouse.bairro}, ${empresa.endereco.cidade}`, addressRegion: empresa.endereco.uf, addressCountry: 'BR' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: c.faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    },
+  ],
+};
+---
+
+<Base title={v.title} description={v.description} canonical={canonical} ogImage={ogImage.src} jsonLd={jsonLd} googleFonts={false}>
+  <Fragment slot="head">
+    <link rel="preload" href="/fonts/KronaOne-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin />
+  </Fragment>
+
+<div class="lp">
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#topo" class="logo"><img src={logoConnectfun.src} alt="Connect Fun" width="160" height="32" class="logo-visible" /></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#casas">As casas</a>
+      <a href="#formato">{c.formato.eyebrow}</a>
+      <a href="#solucao">O que está incluso</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#orcamento" class="btn btn-primary lp-nav-cta"><span class="lp-cta-long">Solicitar orçamento</span><span class="lp-cta-short">Orçamento</span></a>
+      <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. PRIMEIRA DOBRA -->
+<section class="hero" id="topo">
+  <div class="hero-bg">
+    <div class="hero-slides">
+      <div class="hero-slide">
+        <Img src={c.heroImg} alt={c.heroAlt} priority widths={[640, 960, 1280, 1920]} sizes="100vw" quality={55} class="hero-img" />
+      </div>
+    </div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <canvas id="constellation"></canvas>
+  </div>
+  <div class="wrap">
+    <div class="lp-hero-grid">
+      <div class="hero-content lp-hero-text">
+        <span class="eyebrow">Casas exclusivas em São Paulo</span>
+        <h1>{v.h1}</h1>
+        <p class="lead lp-hero-sub">{subtitulo}</p>
+        <ul class="lp-proofs">
+          <li><b>30 a 220</b> convidados</li>
+          <li><b>Pinheiros</b> e <b>Higienópolis</b></li>
+          <li><b>A&amp;V e gastronomia</b> inclusos</li>
+        </ul>
+        {urgencia && <p class="lp-urgencia"><span aria-hidden="true">●</span> {urgencia}</p>}
+      </div>
+      <div class="form-card lp-hero-form" id="orcamento">
+        <h2 class="lp-form-title">Solicite seu orçamento</h2>
+        <p class="lp-form-sub">Orçamento sem compromisso. Nosso atendimento consultivo indica a casa ideal para a sua empresa.</p>
+        <LeadForm
+          formId={`${formId}-topo`}
+          project={config.project_slug}
+          fonte={fonte}
+          submitUrl={config.forms['lead-form'].webhooks[0]}
+          redirectUrl={config.forms['lead-form'].redirect_on_success}
+          submitText="Solicitar orçamento →"
+          honeypot
+          fields={camposForm('t-')}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA (logo após a dobra: confiança antes de rolar) -->
+<section class="lp-logos" id="clientes" aria-label="Empresas atendidas">
+  <p class="lp-logos-t">Empresas e agências que já realizaram eventos com a Connect Fun</p>
+  <div class="partners">
+    <div class="partners-track">
+      {[...clientes, ...clientes].map((cl, i) => (
+        <div class="logo-slot">
+          <Img src={cl.src} alt={i < clientes.length ? cl.alt : ''} width={160} style="max-height:52px;width:auto;object-fit:contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 2. AS CASAS -->
+<section class="sec" id="casas">
+  <div class="wrap">
+    <div class="sec-head lp-center reveal">
+      <span class="eyebrow">As casas</span>
+      <h2 class="display-l">Casas exclusivas em Pinheiros e Higienópolis.</h2>
+      <p class="lead">{c.casasIntro}</p>
+    </div>
+
+    <article class="lp-casa lp-casa-gt reveal">
+      <div class="lp-casa-media">
+        <Img src="casas/gt-house/dois-andares.jpg" alt="GT House: estrutura com dois andares de plenárias e jardim" widths={[480, 720, 1080]} sizes="(max-width: 960px) 92vw, 560px" quality={65} />
+        <GtHouseEsquema />
+      </div>
+      <div class="lp-casa-text">
+        <span class="lp-tag">{gtHouse.bairro}</span>
+        <h3>{gtHouse.nome}</h3>
+        <p>Duas plenárias na mesma casa, uma em cima da outra: a <strong>Plenária Elevado</strong> recebe até 220 pessoas com painel de LED de 25 m², e a <strong>Plenária Térrea</strong>, até 170 pessoas com LED de 10 m². Completam a casa o jardim para até 120 convidados e o pé-direito de 8 m.</p>
+        <ul class="lp-stats">
+          {gtHouse.destaques.map((d) => <li><b>{d.valor}</b><span>{d.rotulo}</span></li>)}
+        </ul>
+      </div>
+    </article>
+
+    <article class="lp-casa lp-casa-one reveal">
+      <div class="lp-casa-text">
+        <span class="lp-tag">{oneHouse.bairro}</span>
+        <h3>{oneHouse.nome}</h3>
+        <p>{oneHouse.resumo} Ideal para grupos menores e eventos com clima intimista, com até 150 pessoas em formato coquetel.</p>
+        <ul class="lp-stats">
+          {oneHouse.destaques.map((d) => <li><b>{d.valor}</b><span>{d.rotulo}</span></li>)}
+        </ul>
+      </div>
+    </article>
+
+    <div class="lp-inline-cta reveal">
+      <a href="#orcamento" class="btn btn-primary">Solicitar orçamento <span class="arr">→</span></a>
+      <a href="#contato" class="btn btn-ghost">Agendar visita técnica</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FORMATO DA PÁGINA -->
+<section class="sec plum" id="formato">
+  <div class="wrap">
+    <div class="lp-formato">
+      <div class="lp-formato-text reveal">
+        <span class="eyebrow">{c.formato.eyebrow}</span>
+        <h2 class="display-l">{c.formato.titulo}</h2>
+        <p class="lead">{c.formato.texto}</p>
+        <div class="lp-itens">
+          {c.formato.itens.map((it) => (
+            <div class="lp-item">
+              <h3>{it.titulo}</h3>
+              <p>{it.texto}</p>
+            </div>
+          ))}
+        </div>
+        <a href="#orcamento" class="btn btn-primary lp-formato-cta">Quero receber a proposta <span class="arr">→</span></a>
+      </div>
+      <div class="lp-formato-fotos reveal">
+        {c.formato.fotos.map((f) => (
+          <Img src={f.src} alt={f.alt} widths={[480, 720, 1080]} sizes="(max-width: 960px) 92vw, 520px" quality={65} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SOLUÇÃO COMPLETA -->
+<section class="sec" id="solucao">
+  <div class="wrap">
+    <div class="sec-head lp-center reveal">
+      <span class="eyebrow">Solução completa</span>
+      <h2 class="display-l">Estrutura completa no local, com um só fornecedor.</h2>
+      <p class="lead">Espaço, mobiliário, A&amp;V e gastronomia em uma única proposta, com atendimento consultivo do primeiro contato ao dia do evento.</p>
+    </div>
+    <div class="diffs lp-diffs">
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h3>A&amp;V incluso</h3>
+        <p>Som, iluminação e painel de LED de 25 m², nas plenárias de até 220 pessoas.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 3v8a4 4 0 008 0V3M12 15v6M8 21h8"/></svg></div>
+        <h3>Gastronomia e bar de drinks</h3>
+        <p>Cardápio para coquetel, coffee, almoço ou jantar e bar de drinks no mesmo lugar.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18v-6a2 2 0 012-2h12a2 2 0 012 2v6M2 18h20M6 10V7a2 2 0 012-2h8a2 2 0 012 2v3"/></svg></div>
+        <h3>Mobiliário</h3>
+        <p>Ambientes montados conforme o formato: plenária, coquetel, jantar ou lounge.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 012 4.18 2 2 0 014 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <h3>Atendimento consultivo</h3>
+        <p>Um só contato para alinhar formato, casa, cardápio e estrutura, sem negociar com vários fornecedores.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+        <h3>Visita técnica</h3>
+        <p>Agende uma visita técnica e conheça a casa pessoalmente antes de decidir.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="3" width="16" height="8" rx="1.5"/><rect x="4" y="13" width="16" height="8" rx="1.5"/></svg></div>
+        <h3>Duas plenárias na mesma casa</h3>
+        <p>Na GT House, conteúdo e refeição ou jantar e festa acontecem em ambientes separados, sem trocar de endereço.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. HUB -->
+<section class="sec plum" id="hub">
+  <div class="wrap">
+    <div class="sec-head lp-center reveal">
+      <span class="eyebrow">Connect Fun</span>
+      <h2 class="display-l">Mais de uma casa, um só atendimento.</h2>
+      <p class="lead">Você conta o que precisa e nós indicamos a casa ideal para o seu evento.</p>
+    </div>
+    <div class="steps">
+      <div class="process-connector"></div>
+      <div class="step reveal"><div class="num">01 · Briefing</div><h3>Você conta o evento</h3><p>Formato, data, número de convidados e o que o evento precisa.</p></div>
+      <div class="step reveal"><div class="num">02 · Indicação</div><h3>Indicamos a casa ideal</h3><p>GT House ou One House, conforme o tamanho e o clima do evento.</p></div>
+      <div class="step reveal"><div class="num">03 · Visita</div><h3>Você conhece a casa</h3><p>Agende uma visita técnica para ver os ambientes pessoalmente.</p></div>
+      <div class="step reveal"><div class="num">04 · Proposta</div><h3>Recebe tudo em uma proposta</h3><p>Espaço, A&amp;V, gastronomia e bar em um só orçamento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section class="sec faq-bg" id="faq">
+  <div class="wrap">
+    <div class="sec-head lp-center reveal">
+      <span class="eyebrow dark">Dúvidas frequentes</span>
+      <h2 class="display-l">Perguntas antes de reservar.</h2>
+    </div>
+    <div class="faq">
+      {c.faq.map(({ q, a }) => (
+        <div class="qa reveal">
+          <button type="button" aria-expanded="false">{q} <span class="ic" aria-hidden="true">+</span></button>
+          <div class="ans"><p>{a}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 8. CTA FINAL + FORMULÁRIO -->
+<section class="sec cta-final" id="contato" style={`background-image:url('${ctaBg.src}')`}>
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="cta-left reveal">
+        <span class="eyebrow">Solicitar orçamento</span>
+        <h2 class="display-l">Conte o essencial e receba sua proposta.</h2>
+        <p class="lead">Nosso atendimento consultivo indica a casa ideal e envia o orçamento com espaço, mobiliário, A&amp;V e gastronomia. Se preferir, agende uma visita técnica.</p>
+        {urgencia && <p class="lp-urgencia"><span aria-hidden="true">●</span> {urgencia}</p>}
+      </div>
+      <div class="form-card reveal">
+        <LeadForm
+          formId={formId}
+          project={config.project_slug}
+          fonte={fonte}
+          submitUrl={config.forms['lead-form'].webhooks[0]}
+          redirectUrl={config.forms['lead-form'].redirect_on_success}
+          submitText="Solicitar orçamento →"
+          honeypot
+          fields={camposForm('c-')}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<WhatsAppWidget eventOptions={c.opcoesTipo} fonte={fonte} />
+
+<SiteFooter />
+
+</div>
+</Base>
+
+<script>
+  import '../../scripts/index.js';
+
+  // Esconde o botão flutuante do WhatsApp enquanto algum formulário está visível (ver lp.css)
+  const visiveis = new Set<Element>();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => (e.isIntersecting ? visiveis.add(e.target) : visiveis.delete(e.target)));
+    document.body.classList.toggle('lp-form-visivel', visiveis.size > 0);
+  }, { threshold: 0.5 }); // some só quando o formulário ocupa boa parte da tela
+  document.querySelectorAll('#orcamento form, #contato form').forEach((f) => io.observe(f));
+</script>

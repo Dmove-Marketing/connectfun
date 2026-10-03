@@ -6,7 +6,7 @@ import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import Video from '../components/ui/Video.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
-import WhatsAppPopup from '../components/WhatsAppPopup.astro';
+import WhatsAppWidget from '../components/ui/WhatsAppWidget.astro';
 import '../styles/index.css';
 
 const clientes = [
@@ -372,11 +372,7 @@ import logoConnectfun from '../assets/images/logo-connectfun.png';
 </section>
 
 <!-- WHATSAPP FLOATING BUTTON + POPUP -->
-<WhatsAppPopup
-  project={config.project_slug}
-  submitUrl={config.forms['lead-form'].webhooks[0]}
-  redirectUrl={config.forms['lead-form'].redirect_on_success}
-/>
+<WhatsAppWidget />
 
 <!-- FOOTER -->
 <SiteFooter />

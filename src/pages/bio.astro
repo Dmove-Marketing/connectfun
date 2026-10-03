@@ -4,7 +4,7 @@ import config from '../../config.json';
 import logoConnectfun from '../assets/images/logo-connectfun.png';
 import LeadForm from '../components/forms/LeadForm.astro';
 import Img from '../components/ui/Img.astro';
-import WhatsAppPopup from '../components/WhatsAppPopup.astro';
+import WhatsAppWidget from '../components/ui/WhatsAppWidget.astro';
 import '../styles/bio.css';
 
 // TODO: substituir pela URL pública da foto (CDN ou Drive exportado)
@@ -117,9 +117,5 @@ const heroPhoto = 'https://media.dmove.com.br/clients/connectfun/photos/_MG_8452
   </div><!-- /.bio-card -->
 </main>
 
-<WhatsAppPopup
-  project={config.project_slug}
-  submitUrl={config.forms['lead-form'].webhooks[0]}
-  redirectUrl={config.forms['lead-form'].redirect_on_success}
-/>
+<WhatsAppWidget />
 </Base>

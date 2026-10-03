@@ -16,6 +16,11 @@
   font-display: swap;
 }
 
+/* Fontes de reserva com a mesma largura das fontes da marca: enquanto a Krona One/Poppins
+   carregam, o texto já quebra nas mesmas linhas, então a troca não desloca o layout (CLS). */
+@font-face { font-family: 'Krona Fallback'; src: local('Arial'), local('Helvetica'); size-adjust: 146.9%; }
+@font-face { font-family: 'Poppins Fallback'; src: local('Arial'), local('Helvetica'); size-adjust: 110.8%; }
+
 :root{
     --ink:#0F0E17;
     --ink-soft:#16151F;
@@ -28,8 +33,8 @@
     --slate-light:#fff;
     --line:rgba(255,255,255,.10);
     --line-dark:rgba(15,14,23,.10);
-    --display:"Krona One",sans-serif;
-    --body:"Poppins",sans-serif;
+    --display:"Krona One","Krona Fallback",sans-serif;
+    --body:"Poppins","Poppins Fallback",sans-serif;
     --mono:"Space Grotesk",sans-serif;
     --maxw:1180px;
   }

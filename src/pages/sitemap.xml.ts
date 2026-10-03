@@ -1,5 +1,6 @@
 // Sitemap gerado no build a partir das páginas em src/pages (sem dependência extra).
 import type { APIRoute } from 'astro';
+import { lps } from '../data/lps';
 
 const pages = import.meta.glob('./**/*.astro', { eager: true });
 
@@ -8,6 +9,7 @@ export const GET: APIRoute = ({ site }) => {
     .map((file) => file.replace(/^\.\//, '').replace(/\.astro$/, '').replace(/(^|\/)index$/, ''))
     .filter((path) => !path.split('/').some((seg) => seg.startsWith('_') || seg.startsWith('[') || seg === '404'))
     .map((path) => new URL(path ? `/${path}/` : '/', site).href)
+    .concat(lps.map((lp) => new URL(lp.base, site).href)) // só a principal: variantes têm canonical nela
     .sort();
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,0 +1,57 @@
+---
+// Esquema ilustrativo da GT House em corte: duas plenárias empilhadas + jardim.
+// O direcionamento pede para mostrar os dois andares ("o público não entende a casa").
+// Feito em HTML/CSS (e não SVG) para o texto continuar legível no celular.
+// Substituir pela planta oficial quando o cliente enviar.
+import { gtHouse } from '../../data/casas';
+const [elevado, terrea, jardim] = gtHouse.andares;
+---
+
+<figure class="gt-esq" aria-label="Esquema da GT House em corte">
+  <div class="gt-esq-corte">
+    <div class="gt-esq-predio">
+      <div class="gt-esq-andar gt-esq-top">
+        <span class="gt-esq-n">Andar superior</span>
+        <strong>{elevado.nome}</strong>
+        <span>{elevado.capacidade} · {elevado.led}</span>
+      </div>
+      <div class="gt-esq-andar">
+        <span class="gt-esq-n">Térreo</span>
+        <strong>{terrea.nome}</strong>
+        <span>{terrea.capacidade} · {terrea.led}</span>
+      </div>
+    </div>
+    <div class="gt-esq-lado">
+      <div class="gt-esq-pd"><strong>8 m</strong><span>de pé-direito</span></div>
+      <div class="gt-esq-jardim">
+        <span class="gt-esq-n">Área externa</span>
+        <strong>{jardim.nome}</strong>
+        <span>{jardim.capacidade}</span>
+      </div>
+    </div>
+  </div>
+  <figcaption>Esquema ilustrativo · duas plenárias na mesma casa, uma em cima da outra</figcaption>
+</figure>
+
+<style>
+  .gt-esq { margin: 0; }
+  .gt-esq-corte { display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: stretch; }
+  .gt-esq-predio { display: grid; gap: 8px; padding-top: 10px; border-top: 2px solid rgba(255,255,255,.3); }
+  .gt-esq-andar, .gt-esq-jardim {
+    display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.04);
+    font-size: .82rem; color: rgba(255,255,255,.75); line-height: 1.4;
+  }
+  .gt-esq-top { border-color: rgba(233,58,125,.6); background: rgba(233,58,125,.10); }
+  .gt-esq-andar strong, .gt-esq-jardim strong, .gt-esq-pd strong { color: #fff; font-weight: 600; font-size: .98rem; }
+  .gt-esq-n { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--magenta-glow); }
+  .gt-esq-lado { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; padding-top: 12px; }
+  .gt-esq-pd {
+    display: flex; flex-direction: column; justify-content: center; padding-left: 14px;
+    border-left: 2px solid var(--magenta-glow); font-size: .8rem; color: rgba(255,255,255,.75);
+  }
+  .gt-esq-pd strong { font-family: var(--display); font-weight: 400; font-size: 1.3rem; color: var(--magenta-glow); }
+  .gt-esq-jardim { border-color: rgba(120,200,150,.5); background: rgba(80,160,110,.12); }
+  .gt-esq-jardim .gt-esq-n { color: rgba(150,220,175,.95); }
+  .gt-esq figcaption { margin-top: 10px; font-size: .76rem; color: var(--slate-light); opacity: .7; text-align: center; }
+</style>

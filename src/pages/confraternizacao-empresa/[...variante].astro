@@ -1,0 +1,17 @@
+---
+// C1 Confraternização: 1 página principal + 3 variantes de H1/title (uma URL por grupo de anúncios).
+// As variantes apontam o canonical para a principal.
+import LpTemplate from '../../components/lp/LpTemplate.astro';
+import { confraternizacao } from '../../data/lps/confraternizacao';
+
+export function getStaticPaths() {
+  return confraternizacao.variantes.map((v) => ({
+    params: { variante: v.slug || undefined },
+    props: { variante: v },
+  }));
+}
+
+const { variante } = Astro.props;
+---
+
+<LpTemplate conteudo={confraternizacao} variante={variante} />

@@ -5,7 +5,7 @@ import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import Video from '../components/ui/Video.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
-import WhatsAppPopup from '../components/WhatsAppPopup.astro';
+import WhatsAppWidget from '../components/ui/WhatsAppWidget.astro';
 import '../styles/palestras-imersoes.css';
 
 const clientes = [
@@ -357,11 +357,7 @@ const espacos = [
 </section>
 
 <!-- WHATSAPP FLOATING BUTTON + POPUP -->
-<WhatsAppPopup
-  project={config.project_slug}
-  submitUrl={config.forms['lead-form'].webhooks[0]}
-  redirectUrl={config.forms['lead-form'].redirect_on_success}
-  eventOptions={[
+<WhatsAppWidget eventOptions={[
     'Palestras',
     'Imersão',
     'Treinamento',
@@ -369,8 +365,7 @@ const espacos = [
     'Onboarding / Integração',
     'Kickoff / Convenção',
     'Outro',
-  ]}
-/>
+  ]} />
 
 <!-- FOOTER -->
 <SiteFooter />

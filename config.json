@@ -7,6 +7,12 @@
     "gtm_id": "GTM-5DH53WL2",
     "enabled": true
   },
+  "whatsapp": {
+    "phone": "5511921932889",
+    "display_name": "Connect Fun",
+    "avatar": "/images/whatsapp-avatar.jpg",
+    "enabled": true
+  },
   "forms": {
     "lead-form": {
       "id": "lead-form",
