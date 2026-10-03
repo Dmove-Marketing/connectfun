@@ -1,0 +1,12 @@
+{
+  "name": "Connect Fun · Casas exclusivas para eventos corporativos",
+  "short_name": "Connect Fun",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "theme_color": "#0F0E17",
+  "background_color": "#0F0E17",
+  "display": "browser"
+}
