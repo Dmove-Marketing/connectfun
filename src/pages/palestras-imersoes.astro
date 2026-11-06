@@ -6,6 +6,8 @@ import Img from '../components/ui/Img.astro';
 import Video from '../components/ui/Video.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
 import WhatsAppWidget from '../components/ui/WhatsAppWidget.astro';
+import { getImage } from 'astro:assets';
+import galeria01 from '../assets/images/galeria-01.jpg';
 import '../styles/palestras-imersoes.css';
 
 const clientes = [
@@ -39,12 +41,15 @@ const clientes = [
 
 const heroSrc = 'https://media.dmove.com.br/clients/connectfun/photos/coris_covencao_2025_92_1842363_222317_(1).webp';
 
+const galeria01Otimizada = await getImage({ src: galeria01, width: 1200, format: 'webp', quality: 80 });
+
 const midGaleria = [
   'https://media.dmove.com.br/clients/connectfun/photos/Horizontal_-_(19).webp',
   'https://media.dmove.com.br/clients/connectfun/photos/_MG_8313_(1)_(1).webp',
   'https://media.dmove.com.br/clients/connectfun/photos/CÃ³pia_de_DSC05590.webp',
   'https://media.dmove.com.br/clients/connectfun/photos/20230606_135455_(1).webp',
   'https://media.dmove.com.br/clients/connectfun/photos/Copia_de_DSC05587.webp',
+  galeria01Otimizada.src,
 ];
 
 import logoConnectfun from '../assets/images/logo-connectfun.png';
@@ -156,15 +161,6 @@ const espacos = [
       <h2 class="display-l">Uma única parceria para cuidar de toda a jornada.</h2>
       <p class="lead">Reunimos estrutura, fornecedores e acompanhamento em uma solução integrada que reduz o tempo de organização e facilita cada etapa do planejamento.</p>
     </div>
-    <figure class="c360-photo reveal">
-      <Img
-        src="galeria-01.jpg"
-        alt="Espaço da Connect Fun preparado para palestras e imersões, com sofás, poltronas e iluminação cênica"
-        widths={[480, 800, 1200, 1600]}
-        sizes="(max-width: 1200px) 92vw, 1200px"
-        quality={80}
-      />
-    </figure>
     <div class="diffs">
       <div class="diff reveal">
         <div class="d-i"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
